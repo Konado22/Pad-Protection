@@ -1,44 +1,7 @@
 const { gql } = require('apollo-server-express');
 
-// typeDef Key
-// Assets, Rooms, Items, Policy, User : Info to pull from each schema in Db
-//
-//
-
 const typeDefs = gql`
-
-  type Assets {
-    _id: ID
-    name: String!
-    estimatedValue: Int
-    ppr: Int
-    purchasedDate: Int
-    policy: [Policy]
-    location: String
-    rooms: [Rooms]
-    user: User
-  }
-
-  type Rooms {
-    _id: ID
-    name: String
-    items: [items]
-    value: Int
-  }
-
-  type Items {
-    _id: ID
-    name: String
-    category: String
-    value: Int
-    purchaseDate: String
-  }
-  type Policy {
-    name: String
-    provider: String
-    policyId: String
-    ppp: Int
-  }
+  ## User details
   type User {
     _id: ID!
     firstName: String!
@@ -46,17 +9,72 @@ const typeDefs = gql`
     email: String!
     profile: String!
     age: Int
-    assets: [Assets]
+    assets: [Asset]
   }
   type Auth {
     token: ID
     user: User
   }
+  # Policy details
+  type Policy {
+    name: String
+    provider: String
+    policyId: String
+    ppp: Int
+  }
+  ## Asset details
+  type Asset {
+    _id: ID
+    name: String!
+    estimatedValue: Int
+    ppr: Int
+    purchasedDate: Int
+    policy: [Policy]
+    location: String
+    rooms: [Room]
+    user: User
+  }
+  ## Room details
+    type Room {
+    _id: ID
+    name: String
+    items: [Item]
+    value: Int
+  }
+  ## Item details
+  type Item {
+    _id: ID
+    name: String
+    category: String
+    value: Int
+    purchaseDate: String
+  }
+  ## All assets for user
+  type UserAssets {
+    assets: [Asset]
+  }
+  ## All rooms in an asset
+  type AssetRooms {
+    rooms: [Room]
+  }
+  ## All items in a room
+  type RoomItems {
+    items: [Item]
+  }
+
   type Query {
+    # return individual user, policy, asset, room and item details
     userReturn: User
-    room(_id: ID!, name: String): [Rooms]!
-    items(_id: ID!, name: String): [Items]!
-    policy: Policy
+    policy(_id: ID!): Policy
+    asset(_id: ID!): Asset
+    room(_id: ID!): Room
+    item(_id: ID!): Item
+    # returns all assets for particular user
+    userAssets(_id: ID!): UserAssets
+    # returns all rooms for particular asset
+    assetRooms(_id: ID!): AssetRooms
+    # return all items for particular room
+    roomItems(_id: ID!): RoomItems
   }
 
   type Mutation {
