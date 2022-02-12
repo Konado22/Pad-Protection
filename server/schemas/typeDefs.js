@@ -1,59 +1,69 @@
 const { gql } = require('apollo-server-express');
 
+// typeDef Key
+// Assets, Rooms, Items, Policy, User : Info to pull from each schema in Db
+//
+//
+
 const typeDefs = gql`
-  type Category {
+
+  type Assets {
     _id: ID
-    name: String
+    name: String!
+    estimatedValue: Int
+    ppr: Int
+    purchasedDate: Int
+    policy: [Policy]
+    location: String
+    rooms: [Rooms]
+    user: User
   }
 
-  type Product {
+  type Rooms {
     _id: ID
     name: String
-    description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
+    items: [items]
+    value: Int
   }
 
-  type Order {
+  type Items {
     _id: ID
+    name: String
+    category: String
+    value: Int
     purchaseDate: String
-    products: [Product]
   }
-
+  type Policy {
+    name: String
+    provider: String
+    policyId: String
+    ppp: Int
+  }
   type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    orders: [Order]
+    _id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    profile: String!
+    age: Int
+    assets: [Assets]
   }
-
-  type Checkout {
-    session: ID
-  }
-
   type Auth {
     token: ID
     user: User
   }
-
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    userReturn: User
+    room(_id: ID!, name: String): [Rooms]!
+    items(_id: ID!, name: String): [Items]!
+    policy: Policy
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
-    login(email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, profile: String!, password: String!, age: Int): Auth
+    addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, policy: [Policy], location: String): Assets
+    addRoom(name: String!, value: Int)
+    addItem(name: String!, category: String, value: Int, purchaseDate: String): Items
   }
 `;
 
