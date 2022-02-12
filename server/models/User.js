@@ -25,6 +25,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
+  assets: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Assets',
+  }]
 });
 
 // set up pre-save middleware to create password

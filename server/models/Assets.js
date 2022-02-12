@@ -23,19 +23,19 @@ const assetsSchema = new Schema({
   location: {
     type: String
   },
-  policy: {
-    type: Schema.Types.ObjectId,
-    ref: 'Policy',
-  },
-  rooms: {
-    type: Schema.Types.ObjectId,
-    ref: 'Rooms',
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  }
+  // policy: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Policy',
+  // },
+  // rooms: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Rooms',
+  // },
+  // user: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User',
+  //   required: true
+  // }
  
 });
 
