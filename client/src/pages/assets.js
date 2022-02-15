@@ -1,21 +1,17 @@
 //function to map over assets belonging to User through id?
-
-import Navbar from "../components/navbar/navbar"
-import Footer from '../components/footer/footer'
+import AssetCard from '../components/assetCard/assetCard'
 //need to bring in assets 
 export const Waffle = await response
 export const Assets =  (name, estimatedValue, ppr, purchaseDate, policies, location, ) => {
-    //use .map to iterate over objects, return each object in list
+    //use .map to iterate over objects, return each home owned to display then acordian to show contents
 
-    // response.map(())
     return(
         
         <div className="assetsPageContainer">
-            < Navbar />
             <div>
-                <button>Add Asset</button>
+                <button className="btn btn-secondary">Add Asset</button>
                     <div>
-
+                        <AssetCard />
                     </div>
             </div>
         </div>
