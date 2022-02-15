@@ -1,6 +1,7 @@
 fixedLogo {
   display: flex;
   justify-content: left;
+  background-color: white;
 }
 navbar {
   display: flex;
