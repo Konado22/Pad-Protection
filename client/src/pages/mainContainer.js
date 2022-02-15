@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "./navbar";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from "../components/navbar";
+import Footer from '../components/footer'
 import Homepage from "../pages/homepage/homepage";
 import UserDashboard from "../pages/userDashboard/userDashboard";
-import AddItems from "../pages/addItems/addItems";
 
 export const MainContainer = () => {
   const [currentPage, setCurrentPage] = useState("homepage");
@@ -11,7 +12,9 @@ export const MainContainer = () => {
       return (
         <>
           <Route path="/homepage">
+            <Navbar />
             <Homepage />
+            <Footer />
           </Route>
         </>
       );
@@ -20,20 +23,14 @@ export const MainContainer = () => {
       return (
         <>
           <Route path="/userDashboard">
+            < Navbar />
             <UserDashboard />
+            <Footer />
           </Route>
         </>
       );
     }
-    if (currentPage === "addItems") {
-      return (
-        <>
-          <Route path="/addItems">
-            <AddItems />
-          </Route>
-        </>
-      );
-    }
+    
   };
   return (
     <div>
