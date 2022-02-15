@@ -1,3 +1,4 @@
+    //showing each asset(property) then providing accordian to show contents of property
     //use .map to iterate over objects, return each object in list import information in const
     import React, { useState } from "react";
     const [currentPage,setCurrentPage] = useState("short");

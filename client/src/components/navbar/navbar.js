@@ -3,13 +3,15 @@ import { BrowserRouter as Route } from "react-router-dom";
 //need to add state changes to change page rendering
 
 export const Navbar = (userObj) => {
-  if (req.session == !loggedIn)
+  if (req.session ==!loggedIn)
     return (
       <div>
         <div className="primary">
+        <div className="fixedLogo">
           <h1>Pad Protection</h1>
           <img>logo here</img>
           {/* background css to fill space  */}
+          </div>
           <div className="navbar">
             <Route path="/homepage">
               <h2>Home</h2>

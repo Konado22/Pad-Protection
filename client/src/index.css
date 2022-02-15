@@ -1,3 +1,13 @@
+fixedLogo {
+  display: flex;
+  justify-content: left;
+}
+navbar {
+  display: flex;
+  justify-content: right space-between;
+  color: white;
+}
+
 navbar h2:hover{
   background-color: lightgrey;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2) inset;
