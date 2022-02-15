@@ -1,4 +1,6 @@
-export const Homepage = () => {
+import React from "react";
+
+const Homepage = () => {
   return (
     <div>
       <navbar />
@@ -9,9 +11,12 @@ export const Homepage = () => {
       <h3>description</h3>
       <img>to look cool</img>
       <h3>to learn more</h3>
-      <a><h3>some sort of link</h3></a>
-    
+      <a>
+        <h3>some sort of link</h3>
+      </a>
       <footer />
     </div>
   );
 };
+
+export default Homepage;

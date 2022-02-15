@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -10,23 +10,23 @@ const assetsSchema = new Schema({
   estimatedValue: {
     type: Number,
     required: true,
-    min: 0.99
+    min: 0.99,
   },
   // Personal Property Recommendation
   ppr: {
-    type: Number
+    type: Number,
   },
   purchasedDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   location: {
-    type: String
+    type: String,
   },
-  // policy: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Policy',
-  // },
+  policy: {
+    type: Schema.Types.ObjectId,
+    ref: "Policy",
+  },
   // rooms: {
   //   type: Schema.Types.ObjectId,
   //   ref: 'Rooms',
@@ -36,9 +36,8 @@ const assetsSchema = new Schema({
   //   ref: 'User',
   //   required: true
   // }
- 
 });
 
-const Assets = mongoose.model('Assets', assetsSchema);
+const Assets = mongoose.model("Assets", assetsSchema);
 
 module.exports = Assets;
