@@ -4,7 +4,17 @@ const { User, Assets, Items, Rooms, Policy } = require("../models");
 db.once("open", async () => {
   await Assets.deleteMany();
   await User.deleteMany();
+  await Rooms.deleteMany();
+  await Items.deleteMany();
   console.log("test");
+
+  const rooms = await Rooms.insertMany([
+    { name: 'Kitchen' },
+    { name: 'Living Room' },
+    { name: 'Bed Room' },
+    { name: 'Garage' },
+    { name: 'Guest Room' }
+  ]);
 
   const assets = await Assets.insertMany([
     {
@@ -35,18 +45,23 @@ db.once("open", async () => {
     },
   ]);
 
+  console.log(rooms)
+
   const items = await Items.insertMany([
     {
-      name: "xbox",
-      category: "electronics",
-      value: 300,
+      itemName: "xbox",
+      itemCategory: "electronics",
+      itemValue: 300,
+      room: rooms[1]._id,
     },
     {
-      name: "necklace",
-      category: "jewelry",
-      value: 1000,
+      itemName: "necklace",
+      itemCategory: "jewelry",
+      itemValue: 1000,
+      room: rooms[2]._id,
     },
   ]);
+  console.log("roomId inserted");
 
   process.exit();
 });

@@ -44,10 +44,11 @@ const typeDefs = gql`
   ## Item details
   type Item {
     _id: ID
-    name: String
-    category: String
-    value: Int
-    purchaseDate: String
+    itemName: String
+    itemCategory: String
+    itemValue: Int
+    itemPurchaseDate: String
+    room: Room
   }
   ## All assets for user
   type UserAssets {
@@ -64,24 +65,25 @@ const typeDefs = gql`
 
   type Query {
     # return individual user, policy, asset, room and item details
-    userReturn: User
+    user: User
     policy(_id: ID!): Policy
     asset(_id: ID!): Asset
     room(_id: ID!): Room
     item(_id: ID!): Item
+    items: [Item]
     # returns all assets for particular user
     userAssets(_id: ID!): UserAssets
     # returns all rooms for particular asset
-    assetRooms(_id: ID!): AssetRooms
+    assetRooms(_id: ID): AssetRooms
     # return all items for particular room
     roomItems(_id: ID!): RoomItems
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, profile: String!, password: String!, age: Int): Auth
-    addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, policy: [Policy], location: String): Assets
-    addRoom(name: String!, value: Int)
-    addItem(name: String!, category: String, value: Int, purchaseDate: String): Items
+    # addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, policy: [Policy], location: String): Asset
+    addRoom(name: String!, value: Int): Room
+    addItem(name: String!, category: String, value: Int, purchaseDate: String): Item
   }
 `;
 
