@@ -3,7 +3,6 @@ export const Homepage = () => {
   if (req.session===loggedIn){
     return (
       <div>
-        <navbar />
         <div classname="homepageContainer">
           <h1>Hi {user}</h1>
   
@@ -34,7 +33,6 @@ export const Homepage = () => {
             </div>
           </div>
         </div>
-        <footer />
       </div>
     );
   

@@ -14,11 +14,10 @@ export const Assets =  (name, estimatedValue, ppr, purchaseDate, policies, locat
             < Navbar />
             <div>
                 <button>Add Asset</button>
-                    <div className="assetCard">
+                    <div>
 
                     </div>
             </div>
-            < Footer />
         </div>
     )
     }
