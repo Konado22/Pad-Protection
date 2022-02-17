@@ -110,7 +110,10 @@ const resolvers = {
     // },
   },
   Mutation: {
-
+    
+    addRoom: async (parent, { name, value }) => {
+      return await Rooms.create({ name, value });
+    },
     addItems: async (parent, { itemName, itemCatergory, itemValue, room }) => {
       return await Items.create({ itemName, itemCatergory, itemValue, room });
     },
