@@ -1,24 +1,12 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Items, Rooms } = require("../models");
+const { User, Items, Rooms, Assets } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
   Query: {
-    // categories: async () => {
-    //   return await Category.find();
-    // },
-    items: async (parent, args, context) => {
-      // const params = {};
 
-      // if (roomId) {
-      //   params._Id = roomId
-      // }
-      // if (items) {
-      //   params.items = {
-      //     $regex: items
-      //   };
-      // }
+    items: async (parent, args, context) => {
       return await Items.find({}).populate('room');
     },
 
@@ -26,27 +14,22 @@ const resolvers = {
       return await Items.findById(_id).populate('room')
     },
 
-    room: async (parent, args, context) => {
-      return await Room.find({}).populate('room')
+    room: async (parent, { _id }) => {
+    return await Rooms.findOne({_id}).populate('room')
     },
-    // products: async (parent, { category, name }) => {
-    //   const params = {};
 
-    //   if (category) {
-    //     params.category = category;
-    //   }
-
-    //   if (name) {
-    //     params.name = {
-    //       $regex: name
-    //     };
-    //   }
-
-    //   return await Product.find(params).populate('category');
+    // rooms: async (parent, args, context) => {
+    //   return await Rooms.find({}).populate('room');
     // },
-    // product: async (parent, { _id }) => {
-    //   return await Product.findById(_id).populate('category');
-    // },
+
+    // asset: async (parent, args, context) => {
+    //   return await Assets.find({}).populate('asset')
+    //   },
+
+    asset: async (parent, { _id }) => {
+      return await Assets.findOne({_id}).populate('asset')
+      },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
