@@ -1,51 +1,80 @@
-
 import React, { useState } from "react";
-import { BrowserRouter as Route } from "react-router-dom";
-//need to add state changes to change page rendering
+import { Link } from "react-router-dom";
+import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
+import SignUpForm from "../../pages/Signup";
+import LoginForm from "../../pages/Login";
+import Auth from "../../utils/auth";
+import "./navbar.css";
 
-export const Navbar = (userObj) => {
-  if (req.session ==!loggedIn)
-    return (
-      <div>
-        <div className="primary">
-        <div className="fixedLogo">
-          <h1>Pad Protection</h1>
-          <img>logo here</img>
-          {/* background css to fill space  */}
-          </div>
-          <div className="navbar">
-            <Route path="/homepage">
-              <h2>Home</h2>
-            </Route>
-            <Route path="/policy">
-              <h2>Policy</h2>
-            </Route>
-            <Route path="/assets">
-              <h2>Assets</h2>
-            </Route>
-            <Route path="/login">
-              <h2>Login</h2>
-            </Route>
-          </div>
-        </div>
-      </div>
-    );
-  else {
-    return (
-      <div className="primary">
-        <div className="fixedLogo">
-          <h1>Pad Protection</h1>
-          <img>logo here</img>
-          {/* background css to fill space  */}
-        </div>
-        <div className="navbar">
-          <h2 onMouseOver={(style.backgroundColor = "grey")}>Home</h2>
-          <h2 onMouseOver={(style.backgroundColor = "grey")}>Policy</h2>
-          <h2 onMouseOver={(style.backgroundColor = "grey")}>Assets</h2>
-          <h2 onMouseOver={(style.backgroundColor = "grey")}>Logout</h2>
+const AppNavbar = () => {
+  // set modal display state
+  const [showModal, setShowModal] = useState(false);
 
-        </div>
-      </div>
-    );
-  }
+  return (
+    <>
+      <Navbar variant="light" expand="lg" className="navbarMain">
+        <Container fluid>
+          <Navbar.Brand as={Link} to="/">
+            <img src="./images/pplogo.png" alt="logo" width="200px"></img>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbar" />
+          <Navbar.Collapse id="navbar">
+            <Nav className="ml-auto">
+              <Nav.Link as={Link} to="/">
+                About
+              </Nav.Link>
+              {/* if user is logged in show saved books and logout */}
+              {Auth.loggedIn() ? (
+                <>
+                  <Nav.Link as={Link} to="/saved">
+                    Assets
+                  </Nav.Link>
+                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                </>
+              ) : (
+                <Nav.Link onClick={() => setShowModal(true)}>
+                  Login/Sign Up
+                </Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      {/* set modal data up */}
+      <Modal
+        size="lg"
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby="signup-modal"
+      >
+        {/* tab container to do either signup or login component */}
+        <Tab.Container defaultActiveKey="login">
+          <Modal.Header closeButton>
+            <Modal.Title id="signup-modal">
+              <Nav variant="pills">
+                <Nav.Item>
+                  <Nav.Link eventKey="login">Login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey="login">
+                <LoginForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+              <Tab.Pane eventKey="signup">
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
+    </>
+  );
 };
+
+export default AppNavbar;
