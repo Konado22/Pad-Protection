@@ -111,6 +111,7 @@ const resolvers = {
   },
   Mutation: {
 
+
     // addItem: async (parent, { Items }, context) => {
     //   console.log(context);
     //   if (context.user) {
@@ -122,6 +123,7 @@ const resolvers = {
     //   const token = signToken(user);
     //   return { token, user };
     // },
+
     // addOrder: async (parent, { products }, context) => {
     //   console.log(context);
     //   if (context.user) {
@@ -149,18 +151,18 @@ const resolvers = {
     //     { new: true }
     //   );
     // },
-    // login: async (parent, { email, password }) => {
-    //   const user = await User.findOne({ email });
-    //   if (!user) {
-    //     throw new AuthenticationError("Incorrect credentials");
-    //   }
-    //   const correctPw = await user.isCorrectPassword(password);
-    //   if (!correctPw) {
-    //     throw new AuthenticationError("Incorrect credentials");
-    //   }
-    //   const token = signToken(user);
-    //   return { token, user };
-    // },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+      const token = signToken(user);
+      return { token, user };
+    },
   },
 };
 
