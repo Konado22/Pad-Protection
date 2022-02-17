@@ -111,13 +111,21 @@ const resolvers = {
   },
   Mutation: {
 
+    addItems: async (parent, { itemName, itemCatergory, itemValue, room }) => {
+      return await Items.create({ itemName, itemCatergory, itemValue, room });
+    },
 
-    // addItem: async (parent, { Items }, context) => {
-    //   console.log(context);
-    //   if (context.user) {
-    //     const item = new item
-    //   }
-    // }
+    updateItems: async (parent, { id, itemName, itemCatergory, itemValue }) => {
+      return await Items.findOneAndUpdate(
+        { _id: id }, 
+        { itemName },
+        { itemCatergory },
+        { itemValue },
+        // Return the newly updated object instead of the original
+        { new: true }
+      );
+    },
+
     // addUser: async (parent, args) => {
     //   const user = await User.create(args);
     //   const token = signToken(user);

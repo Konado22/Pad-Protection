@@ -48,7 +48,7 @@ const typeDefs = gql`
     itemCategory: String
     itemValue: Int
     itemPurchaseDate: String
-    room: Room
+    room: [Room]
   }
   ## All assets for user
   type UserAssets {
@@ -56,7 +56,7 @@ const typeDefs = gql`
   }
   ## All rooms in an asset
   type AssetRooms {
-    rooms: [Room]
+    rooms: Room
   }
   ## All items in a room
   type RoomItems {
@@ -82,7 +82,8 @@ const typeDefs = gql`
   type Mutation {
     # addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, policy: [Policy], location: String): Asset
     addRoom(name: String!, value: Int): Room
-    addItem(name: String!, category: String, value: Int, purchaseDate: String): Item
+    addItems(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int): Item
+    updateItems(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int ): Item
     addUser(
       firstName: String!
       lastName: String!
