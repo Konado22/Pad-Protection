@@ -3,21 +3,26 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const itemsSchema = new Schema({
-  name: {
+  itemName: {
     type: String,
     required: true,
   },
-  category: {
+  itemCategory: {
       type: String
   },
-  value: {
+  itemValue: {
     type: Number,
     required: true,
     min: 0.99
   },
-  purchasedDate: {
+  itemPurchasedDate: {
     type: Date,
     default: Date.now 
+  },
+  room: {
+    type: Schema.Types.ObjectId,
+    ref: 'Rooms',
+    required: true
   }
 });
 

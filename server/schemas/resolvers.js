@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Items, Rooms } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -8,6 +8,27 @@ const resolvers = {
     // categories: async () => {
     //   return await Category.find();
     // },
+    items: async (parent, args, context) => {
+      // const params = {};
+
+      // if (roomId) {
+      //   params._Id = roomId
+      // }
+      // if (items) {
+      //   params.items = {
+      //     $regex: items
+      //   };
+      // }
+      return await Items.find({}).populate('room');
+    },
+
+    item: async (parent, { _id }) => {
+      return await Items.findById(_id).populate('room')
+    },
+
+    room: async (parent, args, context) => {
+      return await Room.find({}).populate('room')
+    },
     // products: async (parent, { category, name }) => {
     //   const params = {};
 
@@ -89,11 +110,20 @@ const resolvers = {
     // },
   },
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-      return { token, user };
-    },
+
+
+    // addItem: async (parent, { Items }, context) => {
+    //   console.log(context);
+    //   if (context.user) {
+    //     const item = new item
+    //   }
+    // }
+    // addUser: async (parent, args) => {
+    //   const user = await User.create(args);
+    //   const token = signToken(user);
+    //   return { token, user };
+    // },
+
     // addOrder: async (parent, { products }, context) => {
     //   console.log(context);
     //   if (context.user) {
