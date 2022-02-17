@@ -9,7 +9,7 @@ export const addItems = () => {
                 <input></input>
                 <input></input>
                 <input></input>
-                <input className='btn btn-secondary' type={submit}></input>
+                <input className='btn btn-secondary' type=submit></input>
             </form>
         </div>
     )
