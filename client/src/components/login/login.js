@@ -6,7 +6,7 @@ export const Login = (name, email, password) => {
       </label>
       <input type={email} placeholder="email" id="emailBox"></input>
       <label for="passwordBox" class="form-label">
-        Email address
+        Password
       </label>
       <input type={password} placeholder="password" id="passwordBox"></input>
       <input classname="btn btn-secondary" type={submit}>

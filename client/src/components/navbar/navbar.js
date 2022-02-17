@@ -1,30 +1,4 @@
-<<<<<<< HEAD
-import React from "react";
 
-export const Navbar = (userObj) => {
-  if (session === !loggedIn)
-    return (
-      <div>
-        <h1>Pad Protection</h1>
-        <img>logo here</img>
-        {/* background css to fill space  */}
-        <div className="navbar">
-          <h2>Signup</h2>
-          <h2>Login</h2>
-        </div>
-      </div>
-    );
-  else {
-    return (
-      <div>
-        <h1>Pad Protection</h1>
-        <img>logo here</img>
-        {/* background css to fill space  */}
-        <div className="navbar">
-          <h2>My Profile</h2>
-          <h2>My Assets</h2>
-          <h2>Schedule with us</h2>
-=======
 import React, { useState } from "react";
 import { BrowserRouter as Route } from "react-router-dom";
 //need to add state changes to change page rendering
@@ -69,7 +43,7 @@ export const Navbar = (userObj) => {
           <h2 onMouseOver={(style.backgroundColor = "grey")}>Policy</h2>
           <h2 onMouseOver={(style.backgroundColor = "grey")}>Assets</h2>
           <h2 onMouseOver={(style.backgroundColor = "grey")}>Logout</h2>
->>>>>>> ReactJesse
+
         </div>
       </div>
     );
