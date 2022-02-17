@@ -5,19 +5,96 @@ fixedLogo {
 }
 navbar {
   display: flex;
-  justify-content: right space-between;
+  justify-content: right;
   color: white;
 }
 
-navbar h2:hover{
+navbar h2:hover {
   background-color: lightgrey;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2) inset;
   color: black;
 }
-  
-*{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+* {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   margin: auto;
   font-size: 28px;
   color: white;
+}
+
+.api-section.api-coverage {
+  height: 713px;
+  padding-top: 120px;
+}
+.api-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background-color: #161930;
+}
+
+/* .api-section .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  background-image: radial-gradient(
+    90% 200% at bottom,
+    #92abdc 0%,
+    #161930 50%
+  );
+  background-repeat: no-repeat;
+} */
+
+.api-section.api-coverage .clouds {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 191px;
+  width: 100%;
+}
+.api-section.api-coverage .clouds .clouds-bg {
+  position: absolute;
+  right: -1400px;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  background: url(https://www.lemonade.com/assets/api/bg-clouds.png) 0% 0%
+    repeat;
+  z-index: 1;
+  background-size: contain;
+  -webkit-animation: move-bg 60s infinite linear;
+  -moz-animation: move-bg 60s infinite linear;
+  -ms-animation: move-bg 60s infinite linear;
+  -o-animation: move-bg 60s infinite linear;
+  animation: move-bg 60s infinite linear;
+}
+
+@keyframes move-bg {
+  0% {
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-1400px);
+  }
+}
+.api-section .inner {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  z-index: 2;
+}
+.api-section h2 {
+  font: 700 46px/60px "Lato", "Helvetica Neue", Arial, sans-serif;
+  color: #ffffff;
+}
+.api-section.api-coverage p {
+  width: 895px;
+  text-align: center;
 }
