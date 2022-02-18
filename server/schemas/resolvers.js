@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Items, Rooms, Assets } = require("../models");
+const { User, Items, Rooms, Assets, Policy } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -18,17 +18,28 @@ const resolvers = {
     return await Rooms.findOne({_id}).populate('room')
     },
 
-    // rooms: async (parent, args, context) => {
-    //   return await Rooms.find({}).populate('room');
-    // },
+    rooms: async (parent, args, context) => {
+      return await Rooms.find({})
+      
+    },
 
-    // asset: async (parent, args, context) => {
-    //   return await Assets.find({}).populate('asset')
-    //   },
+    assets: async (parent, args, context) => {
+        const assets = await Assets.find({})
+        console.log(assets)
+        return assets
+      },
 
     asset: async (parent, { _id }) => {
       return await Assets.findOne({_id}).populate('asset')
       },
+
+    policy: async (parent, { _id }) => {
+      return await Policy.findOne({_id});
+    },
+
+    policies: async (parent, args, context) => {
+      return await Policy.find({});
+    },
 
     user: async (parent, args, context) => {
       if (context.user) {
