@@ -63,5 +63,18 @@ db.once("open", async () => {
   ]);
   console.log("roomId inserted");
 
+  const policy = await Policy.insertMany([
+    {
+      name: "mountian house",
+      provider: "state farm",
+      policyId: "g7d9gd"
+    },
+    {
+      name: "city house",
+      provider: "state farm",
+      policyId: "j9k3f3"
+    }
+  ])
+
   process.exit();
 });

@@ -10,7 +10,7 @@ const policySchema = new Schema({
   provider: {
       type: String
   },
-  id: {
+  policyId: {
     type: String
   },
 //   personal property coverage
