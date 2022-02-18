@@ -12,9 +12,26 @@ const Homepage = () => {
           <h2>Protect your Pad</h2>
           <p>
             Pad Protection documents your personal property and allows you to
-            trakc all of your policies in one spot!
+            track all of your policies in one spot!
           </p>
         </div>
+        <img
+          className="bicycle-coverage"
+          alt="bicycle"
+          src="./images/couch.png"
+        ></img>
+        <img
+          className="electronics-coverage"
+          alt="elctronic"
+          src="./images/tv.png"
+        ></img>
+        <img className="jewelry-coverage" src="./images/ring.png" alt=""></img>
+        <img
+          className="musical-coverage"
+          src="./images/cabinet.png"
+          alt=""
+        ></img>
+        <img className="img-skyline" src="./images/home.png" alt=""></img>
       </div>
     </div>
   );
