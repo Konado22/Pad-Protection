@@ -10,6 +10,12 @@ import { setContext } from "@apollo/client/link/context";
 import Homepage from "./pages/homepage";
 import Dashboard from "./pages/dashboard";
 import Navbar from "./components/navbar/navbar";
+
+import AddAsset from "./components/addAsset/addAsset";
+import AssetCard from "./components/assetCard/assetCard";
+import Footer from "./components/footer/footer";
+import Policy from "./pages/policy";
+import AddItems from "./components/addItems/addItems";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
@@ -41,10 +47,15 @@ function App() {
           <Switch>
             <Route exact path="/" component={Homepage} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/addItem" component={AddItems} />
+            <Route exact path="/addAsset" component={AddAsset} />
+            <Route exact path="/assetCard" component={AssetCard} />
+            <Route exact path="/policy" component={Policy} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
+          <Footer />
         </>
       </Router>
     </ApolloProvider>

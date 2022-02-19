@@ -1,6 +1,9 @@
-export const Policy = () => {
+import { Card } from 'react-bootstrap';
+
+const Policy = () => {
+
   return (
-    <div className="policyContainer">
+    <Card className="policyContainer">
       <button>Add Policy</button>
       <div>
       <button>
@@ -8,6 +11,7 @@ export const Policy = () => {
       </button>
       </div>
       <div>{/* render each policy upon selection */}</div>
-    </div>
+    </Card>
   );
 };
+export default Policy;
