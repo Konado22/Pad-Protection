@@ -39,6 +39,14 @@ const resolvers = {
       return await Policy.find({});
     },
 
+    roomItems: async (parent, { _id }) => {
+      return await Rooms.findOne({}).populate('items');
+    },
+
+    assetRooms: async (parent, { _id }) => {
+      return await Assets.findOne({}).populate('rooms')
+    },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
