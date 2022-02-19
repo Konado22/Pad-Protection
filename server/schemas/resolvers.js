@@ -5,40 +5,46 @@ const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 //
 const resolvers = {
   Query: {
-
     items: async (parent, args, context) => {
-      return await Items.find({}).populate('room');
+      return await Items.find({}).populate("room");
     },
 
     item: async (parent, { _id }) => {
-      return await Items.findById(_id).populate('room')
+      return await Items.findById(_id).populate("room");
     },
 
     room: async (parent, { _id }) => {
-    return await Rooms.findOne({_id}).populate('room')
+      return await Rooms.findOne({ _id }).populate("room");
     },
 
     rooms: async (parent, args, context) => {
-      return await Rooms.find({})
-      
+      return await Rooms.find({});
     },
 
     assets: async (parent, args, context) => {
-        const assets = await Assets.find({})
-        console.log(assets)
-        return assets
-      },
+      const assets = await Assets.find({});
+      console.log(assets);
+      return assets;
+    },
 
     asset: async (parent, { _id }) => {
-      return await Assets.findOne({_id}).populate('asset')
-      },
+      return await Assets.findOne({ _id }).populate("asset");
+    },
 
     policy: async (parent, { _id }) => {
-      return await Policy.findOne({_id});
+      return await Policy.findOne({ _id });
     },
 
     policies: async (parent, args, context) => {
       return await Policy.find({});
+    },
+
+    roomItems: async (parent, { _id }) => {
+      return await Rooms.findOne({}).populate('items');
+    },
+
+    assetRooms: async (parent, { _id }) => {
+      return await Assets.findOne({}).populate('rooms')
     },
 
     user: async (parent, args, context) => {
@@ -104,7 +110,6 @@ const resolvers = {
     // },
   },
   Mutation: {
-    // Asset: Add 
     addRoom: async (parent, { name, value }) => {
       return await Rooms.create({ name, value });
     },
@@ -114,7 +119,7 @@ const resolvers = {
 
     updateItem: async (parent, { id, itemName, itemCatergory, itemValue }) => {
       return await Items.findOneAndUpdate(
-        { _id: id }, 
+        { _id: id },
         { itemName },
         { itemCatergory },
         { itemValue },
@@ -123,11 +128,11 @@ const resolvers = {
       );
     },
 
-    // addUser: async (parent, args) => {
-    //   const user = await User.create(args);
-    //   const token = signToken(user);
-    //   return { token, user };
-    // },
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+      return { token, user };
+    },
 
     // addOrder: async (parent, { products }, context) => {
     //   console.log(context);

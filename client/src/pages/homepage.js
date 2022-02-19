@@ -40,26 +40,26 @@ const Homepage = () => {
         </div>
       </div>
       <div className="api-section api-usage">
-        <div class="overlay"></div>
+        <div className="overlay"></div>
         <div className="inner">
           <div className="usage-examples">
             <div className="usage-example e-commerce">
-              <i class="fa-solid fa-comments-dollar fa-3x"></i>
+              <i className="fa-solid fa-comments-dollar fa-3x"></i>
               <h4>Recommendations</h4>
               <p>Get personal property coverage recommendations</p>
             </div>
             <div className="usage-example real-estate">
-              <i class="fa-solid fa-folder fa-3x"></i>
+              <i className="fa-solid fa-folder fa-3x"></i>
               <h4>Asset Records</h4>
               <p>Catalog all of your assets in case of disaster</p>
             </div>
             <div className="usage-example financial-services">
-              <i class="fa-solid fa-folder-tree fa-3x"></i>
+              <i className="fa-solid fa-folder-tree fa-3x"></i>
               <h4>Policy Tracking</h4>
               <p>Aggregate all insurance policies in one location</p>
             </div>
             <div className="usage-example smart-home">
-              <i class="fa-solid fa-file-invoice-dollar fa-3x"></i>
+              <i className="fa-solid fa-file-invoice-dollar fa-3x"></i>
               <h4>Insurance Quotes</h4>
               <p>
                 Get connected to local insurance providers who can insure your
