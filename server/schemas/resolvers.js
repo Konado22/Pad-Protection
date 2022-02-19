@@ -1,52 +1,52 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Items, Rooms } = require("../models");
+const { User, Items, Rooms, Assets, Policy } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
-
+//
 const resolvers = {
   Query: {
-    // categories: async () => {
-    //   return await Category.find();
-    // },
     items: async (parent, args, context) => {
-      // const params = {};
-
-      // if (roomId) {
-      //   params._Id = roomId
-      // }
-      // if (items) {
-      //   params.items = {
-      //     $regex: items
-      //   };
-      // }
-      return await Items.find({}).populate('room');
+      return await Items.find({}).populate("room");
     },
 
     item: async (parent, { _id }) => {
-      return await Items.findById(_id).populate('room')
+      return await Items.findById(_id).populate("room");
     },
 
-    room: async (parent, args, context) => {
-      return await Room.find({}).populate('room')
+    room: async (parent, { _id }) => {
+      return await Rooms.findOne({ _id }).populate("room");
     },
-    // products: async (parent, { category, name }) => {
-    //   const params = {};
 
-    //   if (category) {
-    //     params.category = category;
-    //   }
+    rooms: async (parent, args, context) => {
+      return await Rooms.find({});
+    },
 
-    //   if (name) {
-    //     params.name = {
-    //       $regex: name
-    //     };
-    //   }
+    assets: async (parent, args, context) => {
+      const assets = await Assets.find({});
+      console.log(assets);
+      return assets;
+    },
 
-    //   return await Product.find(params).populate('category');
-    // },
-    // product: async (parent, { _id }) => {
-    //   return await Product.findById(_id).populate('category');
-    // },
+    asset: async (parent, { _id }) => {
+      return await Assets.findOne({ _id }).populate("asset");
+    },
+
+    policy: async (parent, { _id }) => {
+      return await Policy.findOne({ _id });
+    },
+
+    policies: async (parent, args, context) => {
+      return await Policy.find({});
+    },
+
+    roomItems: async (parent, { _id }) => {
+      return await Rooms.findOne({}).populate('items');
+    },
+
+    assetRooms: async (parent, { _id }) => {
+      return await Assets.findOne({}).populate('rooms')
+    },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -110,14 +110,16 @@ const resolvers = {
     // },
   },
   Mutation: {
-
-    addItems: async (parent, { itemName, itemCatergory, itemValue, room }) => {
+    addRoom: async (parent, { name, value }) => {
+      return await Rooms.create({ name, value });
+    },
+    addItem: async (parent, { itemName, itemCatergory, itemValue, room }) => {
       return await Items.create({ itemName, itemCatergory, itemValue, room });
     },
 
-    updateItems: async (parent, { id, itemName, itemCatergory, itemValue }) => {
+    updateItem: async (parent, { id, itemName, itemCatergory, itemValue }) => {
       return await Items.findOneAndUpdate(
-        { _id: id }, 
+        { _id: id },
         { itemName },
         { itemCatergory },
         { itemValue },
@@ -126,11 +128,11 @@ const resolvers = {
       );
     },
 
-    // addUser: async (parent, args) => {
-    //   const user = await User.create(args);
-    //   const token = signToken(user);
-    //   return { token, user };
-    // },
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+      return { token, user };
+    },
 
     // addOrder: async (parent, { products }, context) => {
     //   console.log(context);
@@ -159,6 +161,12 @@ const resolvers = {
     //     { new: true }
     //   );
     // },
+    addUser: async (parent, { email, password }) => {
+      const user = await User.create({ email, password });
+      const token = signToken(user);
+      return { token, user };
+    },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {

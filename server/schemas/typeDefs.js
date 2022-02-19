@@ -1,6 +1,8 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  scalar Date
+  
   ## User details
   type User {
     _id: ID!
@@ -28,7 +30,7 @@ const typeDefs = gql`
     name: String!
     estimatedValue: Int
     ppr: Int
-    purchasedDate: Int
+    purchasedDate: Date
     policy: [Policy]
     location: String
     rooms: [Room]
@@ -77,20 +79,34 @@ const typeDefs = gql`
     assetRooms(_id: ID): AssetRooms
     # return all items for particular room
     roomItems(_id: ID!): RoomItems
+    assets: [Asset]
+    rooms: [Room]
+    policies: [Policy]
   }
 
   type Mutation {
-    # addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, policy: [Policy], location: String): Asset
+    # Asset CRU
+    addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, location: String): Asset
+    removeAsset(_id: ID!): Asset
+    updateAsset: Asset
+
+    # Room CRU
     addRoom(name: String!, value: Int): Room
-    addItems(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int): Item
-    updateItems(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int ): Item
+    removeRoom(_id: ID!): Room
+    updateRoom: Room
+
+    # Item CRU
+    addItem(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int): Item
+    removeItem(_id: ID!): Item
+    updateItem(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int ): Item
+    
+    # User CREATE and LOGIN
     addUser(
       firstName: String!
       lastName: String!
       email: String!
       profile: String!
       password: String!
-      age: Int
     ): Auth
     login(email: String!, password: String!): Auth
   }
