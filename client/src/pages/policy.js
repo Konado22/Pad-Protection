@@ -1,4 +1,4 @@
-export const Policy = () => {
+const Policy = () => {
   return (
     <div className="policyContainer">
       <button>Add Policy</button>
@@ -11,3 +11,4 @@ export const Policy = () => {
     </div>
   );
 };
+export default Policy;
