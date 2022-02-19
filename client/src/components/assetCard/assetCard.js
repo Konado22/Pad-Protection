@@ -1,13 +1,13 @@
 //showing each asset(property) then providing accordian to show contents of property
 //use .map to iterate over objects, return each object in list import information in const
-import { gql, useQuery } from '@apollo/client';import React, { useState } from "react";
-import {user} from '../../../../server/schemas/index'
 
+import { Card } from 'react-bootstrap';
+import { gql, useQuery } from '@apollo/client';import React, { useState } from "react";
 const AssetCard = () => {
   const [currentPage, setCurrentPage] = useState("short");
   if (currentPage === "short") {
     return (
-      <div className="card border-secondary mb-3">
+      <Card>
         <h2 className="card-header">property</h2>
         <h2 className="card-body text-secondary">cost</h2>
         <button
@@ -18,27 +18,31 @@ const AssetCard = () => {
         >
           more
         </button>
-      </div>
+      </Card>
     );
   }
   if (currentPage === "long") {
     // array.forEach(element => {
-
+        // Property
+        // Cost 
+        // Location
+        // ?
     // });
     return (
-      <div className="card border-secondary mb-3">
+
+      <Card className="card border-secondary mb-3">
         <h2 className="card-header">property</h2>
         <h2 className="card-body text-secondary">cost</h2>
         {/* rooms and costs returned values from forEach loop */}
         <button
           className="accordion accordion-flush"
           onClick={() => {
-            setCurrentPage("long");
+            setCurrentPage("short");
           }}
         >
-          more
+          less
         </button>
-      </div>
+      </Card>
     );
   }
 };
