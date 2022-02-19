@@ -22,7 +22,7 @@ const itemsSchema = new Schema({
   room: {
     type: Schema.Types.ObjectId,
     ref: 'Rooms',
-    required: true
+    required: false
   }
 });
 

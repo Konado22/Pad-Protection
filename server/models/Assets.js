@@ -27,15 +27,10 @@ const assetsSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Policy",
   },
-  // rooms: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Rooms',
-  // },
-  // user: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   required: true
-  // }
+  rooms: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Rooms',
+  }]
 });
 
 const Assets = mongoose.model("Assets", assetsSchema);
