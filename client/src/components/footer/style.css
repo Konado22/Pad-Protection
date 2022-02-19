@@ -1,0 +1,18 @@
+.footer {
+  background-color: #161930;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 10px;
+  padding-left: 20px;
+  border-top: none thick white;
+  text-align: right;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+  text-align: left;
+}
