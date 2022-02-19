@@ -42,15 +42,16 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Homepage} />
+            
             <Route exact path ='/addItem' component={AddItems} />
             <Route exact path="/addAsset" component={AddAsset} />
             <Route exact path="/assetCard" component={AssetCard} />
             <Route exact path='/policy' component={Policy} />
-            <Route exact path='/footer' component={Footer} />
 
 
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
+          <Footer />
         </>
       </Router>
     </ApolloProvider>

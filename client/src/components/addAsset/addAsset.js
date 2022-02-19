@@ -3,8 +3,8 @@
 import './addAsset.css'
 import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
-import { Card } from 'react-bootstrap';
-// import {add_asset} from "?"
+import { Card, Form } from 'react-bootstrap';
+// import {add_asset, update_asset} from "?"
 
 
 const AddAsset = () => {
@@ -12,18 +12,18 @@ const AddAsset = () => {
 
   if (currentPage === "default") {
     return (
-      <Card className="addAssetContainer">
+      <Card className="addAssetContainer" style={{backgroundColor:"darkblue",}}>
         <h3>
           Would you like to add a Property or update contents in Property?
         </h3>
-        <button
+        <button style={{backgroundColor:"darkblue",}}
           onClick={() => {
             setCurrentPage("addProperty");
           }}
         >
           Add a Property
         </button>
-        <button className="" onClick={() => {setCurrentPage("updateExisting")}}>
+        <button  style={{backgroundColor:"darkblue",}}className="" onClick={() => {setCurrentPage("updateExisting")}}>
           update contents in existing Property
         </button>
       </Card>
@@ -56,18 +56,18 @@ const AddAsset = () => {
   // })
 
     return (
-      <>
-      <form className="mb-3" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+      <Card style={{backgroundColor:"darkblue",}} >
+      <Form className="mb-3" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
         {/* here adds a new property */}
-        <label> Property Name:<input className="PropName" type="input"></input></label>
-        <label>Estimated Value:<input className="EstimatedValue" type="input"></input></label>
-        <label>Personal Property Recomendation:<input className="PPR" type="input"></input></label>
-        <label>Date Purchased:<input className="PurchasedDate" type="input"></input></label>
-        <label>Location:<input className="Location" type="input"></input></label>
-        <label>Policy: <input className="Policy" type="input"></input></label>
-        <input type="submit" onClick={(e) => {e.preventDefault()}}></input>
-      </form>
-      </>
+        <Form.Label> Property Name:<Form.Control className="PropName" type='input'></Form.Control></Form.Label>
+        <Form.Label>Estimated Value:<Form.Control className="EstimatedValue" type='input'></Form.Control></Form.Label>
+        <Form.Label>Personal Property Recomendation:<Form.Control className="PPR" type='input'></Form.Control></Form.Label>
+        <Form.Label>Date Purchased:<Form.Control className="PurchasedDate" type='input'></Form.Control></Form.Label>
+        <Form.Label>Location:<Form.Control className="Location" type='input'></Form.Control></Form.Label>
+        <Form.Label>Policy: <Form.Control className="Policy" type='input'></Form.Control></Form.Label>
+        <Form.Control type="submit" onClick={(e) => {e.preventDefault()}}></Form.Control>
+      </Form>
+      </Card >
     );
   }
   if (currentPage === "updateExisting") {
@@ -75,11 +75,11 @@ const AddAsset = () => {
     array.forEach((element) => {
       return (
         <div>
-          <div className="card">
+          <Card>
           <h2>{element.name}</h2>
           <h2>{element.value}</h2>
           <button>Edit</button>
-          </div>
+          </Card>
             
         </div>
       );

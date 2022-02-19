@@ -28,16 +28,16 @@ const AddItems = () => {
     // })
     
     return(
-        <Card style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:"center"}}>
+        <Card style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:"center",backgroundColor:"darkblue"}}>
             <Form style={{display:"flex", justifyContent:"center",flexDirection:"column" ,alignItems:'center'}}>
-                <label> Item Name:<input type="text" placeholder="item name"></input></label>
-                <label> Item Category:<input type="text" placeholder="item category"></input></label>
-                <label> Item Value:<input type="text" placeholder=" value of item"></input></label>
-                <label> Date Purchased:<input type="text" placeholder=" Date Purchased"></input></label>
-                <label> Room:<input type="text" placeholder="room "></input></label>
-                <input type="submit" onClick={ (e)=> {
+                <Form.Label> Item Name:<Form.Control type="text" placeholder="describe item"></Form.Control></Form.Label>
+                <Form.Label> Item Category:<Form.Control type="text" placeholder="electronic,furniture"></Form.Control></Form.Label>
+                <Form.Label> Item Value:<Form.Control type="text" placeholder=" value of item"></Form.Control></Form.Label>
+                <Form.Label> Date Purchased:<Form.Control type="text" placeholder=" Date Purchased"></Form.Control></Form.Label>
+                <Form.Label> Room:<Form.Control type="text" placeholder="room "></Form.Control></Form.Label>
+                <Form.Control type="submit" onClick={ (e)=> {
                     e.preventDefault()
-                }}></input>
+                }}></Form.Control>
             </Form>
         </Card>
     )}
