@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import "../index.css";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 
@@ -12,7 +12,7 @@ const Signup = () => {
     lastName: "",
     email: "",
     password: "",
-    profile: " ",
+    profile: "Homeowner",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -41,10 +41,10 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+    <main className="login">
+      <div className="">
+        <div className="signup">
+          <h4 className="title">Sign Up</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -85,14 +85,18 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <input
+                <select
                   className="form-input"
-                  placeholder="Homeowner/investor"
+                  default="Homeowner/investor"
                   name="profile"
-                  type="dropdown"
+                  type="profile"
                   value={formState.profile}
                   onChange={handleChange}
-                />
+                >
+                  <option>Homeowner</option>
+                  <option>RealEstate Investor</option>
+                </select>
+
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: "pointer" }}
