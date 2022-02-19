@@ -2,9 +2,9 @@ const { gql } = require("apollo-server-express");
 
 
 const typeDefs = gql`
-  ## User details
   scalar Date
-
+  
+  ## User details
   type User {
     _id: ID!
     firstName: String!
@@ -86,10 +86,22 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    # addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, policy: [Policy], location: String): Asset
+    # Asset CRU
+    addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, location: String): Asset
+    removeAsset(_id: ID!): Asset
+    updateAsset: Asset
+
+    # Room CRU
     addRoom(name: String!, value: Int): Room
-    addItems(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int): Item
-    updateItems(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int ): Item
+    removeRoom(_id: ID!): Room
+    updateRoom: Room
+
+    # Item CRU
+    addItem(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int): Item
+    removeItem(_id: ID!): Item
+    updateItem(itemName: String!, itemCatergory: String, itemValue: Int, purchaseDate: String, room: Int ): Item
+    
+    # User CREATE and LOGIN
     addUser(
       firstName: String!
       lastName: String!

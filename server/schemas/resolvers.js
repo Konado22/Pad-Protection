@@ -104,15 +104,15 @@ const resolvers = {
     // },
   },
   Mutation: {
-    
+    // Asset: Add 
     addRoom: async (parent, { name, value }) => {
       return await Rooms.create({ name, value });
     },
-    addItems: async (parent, { itemName, itemCatergory, itemValue, room }) => {
+    addItem: async (parent, { itemName, itemCatergory, itemValue, room }) => {
       return await Items.create({ itemName, itemCatergory, itemValue, room });
     },
 
-    updateItems: async (parent, { id, itemName, itemCatergory, itemValue }) => {
+    updateItem: async (parent, { id, itemName, itemCatergory, itemValue }) => {
       return await Items.findOneAndUpdate(
         { _id: id }, 
         { itemName },
@@ -156,6 +156,12 @@ const resolvers = {
     //     { new: true }
     //   );
     // },
+    addUser: async (parent, { email, password }) => {
+      const user = await User.create({ email, password });
+      const token = signToken(user);
+      return { token, user };
+    },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
