@@ -325,6 +325,9 @@ navbar {
   .api-section.api-coverage .electronics-coverage {
     left: calc(5% + 100px);
   }
+  .navbarMain {
+    margin-bottom: 50px;
+  }
 }
 
 @media (max-width: 970px) {
@@ -335,6 +338,9 @@ navbar {
   .navbar-brand {
     margin-left: 1rem;
   }
+  .navbarMain {
+    margin-bottom: 50px;
+  }
 }
 
 @media (max-width: 1520px) {
@@ -344,4 +350,42 @@ navbar {
     padding: 0px;
     flex-wrap: wrap;
   }
+}
+
+.signup {
+  background-color: #161930;
+  text-align: center;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  margin-top: 70px;
+}
+form input {
+  margin-bottom: 20px;
+}
+.login {
+  height: 800px;
+  background-color: #161930;
+  margin-top: -60px;
+  z-index: 2;
+  position: relative;
+}
+.form-input {
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Verdana, sans-serif;
+}
+option {
+  background-color: black;
+  color: white;
+}
+select {
+  margin-bottom: 40px;
 }
