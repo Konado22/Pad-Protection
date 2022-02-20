@@ -13,7 +13,7 @@ import Navbar from "./components/navbar/navbar";
 
 import AddAsset from "./components/addAsset/addAsset";
 import AssetCard from "./components/assetCard/assetCard";
-import Footer from "./components/footer/footer";
+import Footer from "./components/footer/index";
 import Policy from "./pages/policy";
 import AddItems from "./components/addItems/addItems";
 import Login from "./pages/Login";
@@ -55,7 +55,6 @@ function App() {
             <Route exact path="/signup" component={Signup} />
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
-          <Footer />
         </>
       </Router>
     </ApolloProvider>

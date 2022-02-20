@@ -389,3 +389,14 @@ option {
 select {
   margin-bottom: 40px;
 }
+.firstLine {
+  display: flex;
+  flex-direction: row;
+  background-color: #1a1e34;
+  position: relative;
+}
+.firstLine1 {
+  display: flex;
+  flex-direction: row;
+  background-color: #1a1e34;
+}
