@@ -1,8 +1,19 @@
 * {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
- } 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
 /* input {display: flex; */
 /* align-items: center;}  */
 
+.addAssetContainer {
+  max-width: 400px;
+}
 
-
+.top-level {
+  background-color: rgb(22, 25, 48);
+  position: relative;
+  height: 1000px;
+}
+.top-level2 {
+  background-color: rgb(22, 25, 48);
+}

@@ -11,61 +11,38 @@ const AddAsset = () => {
 
   if (currentPage === "default") {
     return (
-      <Card
-        className="addAssetContainer"
-        style={{ backgroundColor: "rgb(22, 25, 48)" }}
-      >
-        <h3>
-          Would you like to add a Property or update contents in Property?
-        </h3>
-        <button
-          style={{ backgroundColor: "rgb(22, 25, 48)" }}
-          onClick={() => {
-            setCurrentPage("addProperty");
-          }}
-        >
-          Add a Property
-        </button>
-        <button
-          style={{ backgroundColor: "rgb(22, 25, 48)" }}
-          className=""
-          onClick={() => {
-            setCurrentPage("updateExisting");
-          }}
-        >
-          update contents in existing Property
-        </button>
-      </Card>
+      <>
+        <div className="container-fluid top-level text-center">
+          <h3>
+            Would you like to add a Property or update contents in Property?
+          </h3>
+          <Card className="addAssetContainer">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                setCurrentPage("addProperty");
+              }}
+            >
+              Add a Property
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                setCurrentPage("updateExisting");
+              }}
+            >
+              Update contents in existing Property
+            </button>
+          </Card>
+        </div>
+      </>
     );
   }
   if (currentPage === "addProperty") {
-    //   const handleInputChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setUserFormData({ ...userFormData, [name]: value });
-    //   };
-
-    // const handleFormSubmit = async (event) => {
-    //     event.preventDefault();
-    // }
-
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
-    // console.log(userFormData)
-    // setItemFormData({
-    //     PropName: "",
-    //     EstimatedValue: "",
-    //     PurchasedDate: "",
-    // Location: "",
-    // Policy: "",
-    // PPR: "",
-    // PPR: "",
-    // })
-
     return (
-      <Card style={{ backgroundColor: "darkblue" }}>
+      <Card className="top-level2">
         <Form
           className="mb-3"
           style={{

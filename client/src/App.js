@@ -15,9 +15,11 @@ import AddAsset from "./components/addAsset/addAsset";
 import AssetCard from "./components/assetCard/assetCard";
 import Footer from "./components/footer/index";
 import Policy from "./pages/policy";
+import Homes from "./pages/homes";
 import AddItems from "./components/addItems/addItems";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import SingleHome from "./pages/SingleHome";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -51,8 +53,12 @@ function App() {
             <Route exact path="/addAsset" component={AddAsset} />
             <Route exact path="/assetCard" component={AssetCard} />
             <Route exact path="/policy" component={Policy} />
+            <Route exact path="/homes" component={Homes} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/home/:homeId">
+              <SingleHome />
+            </Route>
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
         </>

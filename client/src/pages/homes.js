@@ -1,30 +1,79 @@
-import { Card, Modal, Tab, Form } from "react-bootstrap";
+import {
+  Card,
+  Modal,
+  Tab,
+  Form,
+  Jumbotron,
+  Container,
+  CardColumns,
+  Button,
+} from "react-bootstrap";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_ME } from "../utils/queries";
 import React, { useState } from "react";
 import "../index.css";
+import { Link } from "react-router-dom";
 
-const Policy = () => {
-  // set modal display state
+const Homes = () => {
+  // configure query info
+  const { loading, data } = useQuery(GET_ME);
   const [showModal, setShowModal] = useState(false);
+  const userData = data?.user || {};
+  console.log(userData);
+
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
 
   return (
     <>
       <div className="container-fluid top-level">
         <div className="d-flex text-center">
-          <h3 className="mt-3">Policies</h3>
+          <h3 className="mt-3">Homes</h3>
           <button
             type="button"
             className="btn btn-primary mt-2"
             onClick={() => setShowModal(true)}
           >
-            Add Policy
+            Add Home
           </button>
         </div>
-        <Card className="policyContainer">
-          <div>
-            <button>{/* map over each policy */}</button>
+        <Container className="row">
+          <h4>
+            {userData.assets.length
+              ? `Viewing ${userData.assets.length} saved ${
+                  userData.assets.length === 1 ? "home" : "homes"
+                }:`
+              : "You have no homes!"}
+          </h4>
+          <div className="row">
+            {userData.assets.map((asset) => {
+              return (
+                <>
+                  <Card key={asset._id} border="dark" className="homeBody">
+                    <i class="fa-solid fa-house-chimney fa-4x mt-4"></i>
+                    <Card.Body>
+                      <Card.Title>{asset.name}</Card.Title>
+                      <p className="small">
+                        Estimated Value: {asset.estimatedValue}
+                      </p>
+                      <Card.Text>Location: {asset.location}</Card.Text>
+                      <Card.Text>
+                        Personal Property Recommendation: {asset.ppr}
+                      </Card.Text>
+                      <Link
+                        className="btn btn-primary btn-block btn-squared"
+                        to={`/home/${asset._id}`}
+                      >
+                        View Home
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </>
+              );
+            })}
           </div>
-          <div>{/* render each policy upon selection */}</div>
-        </Card>
+        </Container>
       </div>
       {/* set modal data up */}
       <Modal
@@ -103,4 +152,4 @@ const Policy = () => {
     </>
   );
 };
-export default Policy;
+export default Homes;

@@ -37,10 +37,11 @@ function Policies(props) {
           </div>
           <div className="text-center">
             <button type="button" className="btn btn-primary">
-              +Add Policy
+              <a href="./policy">+Add Policy</a>
             </button>
             <button type="button" className="btn btn-primary ms-2">
-              View Policies
+              {" "}
+              <a href="./policy">View Policies</a>
             </button>
           </div>
         </div>
