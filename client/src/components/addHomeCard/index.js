@@ -16,7 +16,7 @@ function AddCard(props) {
                   <a href="./addAsset">+Add Home</a>
                 </button>
                 <button type="button" class="btn btn-primary ms-3 mt-3">
-                  Modify Homes
+                  <a href="./homes">Modify Homes</a>
                 </button>
               </div>
               <div class="h5 mb-0 font-weight-bold text-gray-800"></div>

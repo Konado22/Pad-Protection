@@ -400,3 +400,12 @@ select {
   flex-direction: row;
   background-color: #1a1e34;
 }
+.formPolicy {
+  color: black;
+  background-color: #1a1e34;
+}
+.homeBody {
+  display: flex;
+  flex-direction: row;
+  max-width: fit-content;
+}
