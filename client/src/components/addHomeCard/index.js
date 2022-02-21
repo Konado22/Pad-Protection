@@ -12,11 +12,8 @@ function AddCard(props) {
                 <h4 class="mr-2">Protect your Pad</h4>
               </div>
               <div className="buttons">
-                <button type="button" class="btn btn-primary">
-                  <a href="./addAsset">+Add Home</a>
-                </button>
                 <button type="button" class="btn btn-primary ms-3 mt-3">
-                  <a href="./homes">Modify Homes</a>
+                  <a href="./homes">+Add/Modify Homes</a>
                 </button>
               </div>
               <div class="h5 mb-0 font-weight-bold text-gray-800"></div>

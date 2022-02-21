@@ -41,3 +41,9 @@ export const GET_ASSET = gql`
     }
   }
 `;
+// export const QUERY_CHECKOUT = gql`
+//   {
+//     checkout {
+//       session
+//   }
+// `;

@@ -20,6 +20,7 @@ import AddItems from "./components/addItems/addItems";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import SingleHome from "./pages/SingleHome";
+import ProductDisplay from "./pages/stripe";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -56,6 +57,7 @@ function App() {
             <Route exact path="/homes" component={Homes} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/package" component={ProductDisplay} />
             <Route exact path="/home/:homeId">
               <SingleHome />
             </Route>

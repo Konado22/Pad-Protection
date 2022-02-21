@@ -33,7 +33,7 @@ const AppNavbar = () => {
                 </>
               ) : (
                 <>
-                  <Nav.Link as={Link} to="/signup">
+                  <Nav.Link as={Link} to="/package">
                     Sign Up
                   </Nav.Link>
                   <Nav.Link as={Link} to="/login">

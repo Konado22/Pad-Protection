@@ -409,3 +409,18 @@ select {
   flex-direction: row;
   max-width: fit-content;
 }
+.product {
+  background-color: #161930;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 800px;
+}
+
+.product1 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  max-width: 230px;
+  margin-bottom: 20px;
+}
