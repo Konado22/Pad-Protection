@@ -13,6 +13,7 @@ import { GET_ME } from "../utils/queries";
 import React, { useState } from "react";
 import "../index.css";
 import { Link } from "react-router-dom";
+import App from "./stripe";
 
 const Homes = () => {
   // configure query info
@@ -23,6 +24,10 @@ const Homes = () => {
 
   if (loading) {
     return <h2>LOADING...</h2>;
+  }
+
+  if (!userData.assets.length) {
+    return <App />;
   }
 
   return (

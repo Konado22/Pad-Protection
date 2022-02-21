@@ -65,6 +65,10 @@ const typeDefs = gql`
     items: [Item]
   }
 
+  type Checkout {
+    session: ID
+  }
+
   type Query {
     # return individual user, policy, asset, room and item details
     user: User
@@ -82,6 +86,7 @@ const typeDefs = gql`
     assets: [Asset]
     rooms: [Room]
     policies: [Policy]
+    checkout: Checkout
   }
 
   type Mutation {
