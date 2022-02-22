@@ -54,9 +54,10 @@ const resolvers = {
     user: async (parent, args, context) => {
       console.log(context.user);
       if (context.user) {
-        const user = await User.findOne({ _id: context.user._id }).populate(
-          "assets"
-        );
+        const user = await User.findOne({ _id: context.user._id }).populate({
+          path: "assets",
+          populate: [{ path: "assets" }, { path: "rooms" }, { path: "items" }],
+        });
         return user;
       }
 
