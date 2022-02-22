@@ -74,28 +74,30 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-
     addAsset: async (
       parent,
       { name, estimatedValue, ppr, purchasedDate, location },
       context
     ) => {
       if (context.user) {
+        const asset = await Assets.create({
+          name,
+          estimatedValue,
+          ppr,
+          purchasedDate,
+          location,
+        });
         const assetArrayUpdate = await User.findByIdAndUpdate(
           { _id: context.user._id },
           {
             $push: {
-              assets: name,
-              estimatedValue,
-              ppr,
-              purchasedDate,
-              location,
+              assets: asset,
             },
           },
           { new: true }
         );
 
-        return assetArrayUpdate;
+        return asset;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -110,7 +112,6 @@ const resolvers = {
          );
         return roomArrayUpdate;
        }
-
       throw new AuthenticationError("You need to be logged in!");
     },
 
@@ -119,7 +120,6 @@ const resolvers = {
       { itemName, itemCategory, itemValue, purchasedDate }
     ) => {
       console.log(context);
-
       if (context.user) {
         const itemArrayUpdate = await Rooms.findByIdAndUpdate(
           { _id: context.user._id },
@@ -130,6 +130,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
   // NEEDS REFACTORING
   //  updateItem: async (parent, { id, itemName, itemCatergory, itemValue }, context) => {
   //    if (context.user) {}

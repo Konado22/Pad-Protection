@@ -105,7 +105,7 @@ const typeDefs = gql`
       name: String!
       estimatedValue: Int
       ppr: Int
-      purchasedDate: Int
+      purchasedDate: Date
       location: String
     ): Asset
     removeAsset(_id: ID!): Asset

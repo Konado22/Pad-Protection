@@ -4,24 +4,37 @@ import "./addAsset.css";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 // import {add_asset, update_asset} from "?"
+import { ADD_ASSET } from "../../utils/mutations";
 
 const AddAsset = () => {
   const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    profile: "Homeowner",
+    name: "",
+    estimatedValue: 0,
+    ppr: 0,
+    purchasedDate: " ",
+    location: "",
   });
-  const [addAsset, { error, data }] = useMutation();
+  const [addAsset, { error, data }] = useMutation(ADD_ASSET);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+    console.log(name);
+    if (name === "estimatedValue") {
+      setFormState({
+        ...formState,
+        [name]: parseInt(value),
+      });
+    } else if (name === "ppr") {
+      setFormState({
+        ...formState,
+        [name]: parseInt(value),
+      });
+    } else {
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    }
   };
 
   const handleFormSubmit = async (event) => {
@@ -32,6 +45,7 @@ const AddAsset = () => {
       const { data } = await addAsset({
         variables: { ...formState },
       });
+      window.location.reload();
     } catch (e) {
       console.error(e);
     }
@@ -45,52 +59,49 @@ const AddAsset = () => {
             <h4 className="title">Create Asset</h4>
             <div className="card-body">
               {data ? (
-                <p>Success! You may now head </p>
+                <p>Success!</p>
               ) : (
                 <form onSubmit={handleFormSubmit}>
                   <input
                     className="form-input"
-                    placeholder="Your first name"
-                    name="firstName"
+                    placeholder="Property Name"
+                    name="name"
                     type="text"
-                    value={formState.firstName}
+                    value={formState.name}
                     onChange={handleChange}
                   />
                   <input
                     className="form-input"
-                    placeholder="Your last name"
-                    name="lastName"
+                    placeholder="Estimated Value"
+                    name="estimatedValue"
+                    type="number"
+                    value={formState.estimatedValue}
+                    onChange={handleChange}
+                  />
+                  <input
+                    className="form-input"
+                    placeholder="recommended value"
+                    name="ppr"
+                    type="number"
+                    value={formState.ppr}
+                    onChange={handleChange}
+                  />
+                  <input
+                    className="form-input"
+                    placeholder="purchasedDate"
+                    name="purchasedDate"
                     type="text"
-                    value={formState.lastName}
+                    value={formState.purchasedDate}
                     onChange={handleChange}
                   />
                   <input
                     className="form-input"
-                    placeholder="Your email"
-                    name="email"
-                    type="email"
-                    value={formState.email}
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-input"
-                    placeholder="******"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
-                  />
-                  <select
-                    className="form-input"
-                    default="Homeowner/investor"
-                    name="profile"
+                    default="location"
+                    name="location"
                     type="profile"
-                    value={formState.profile}
+                    value={formState.location}
                     onChange={handleChange}
-                  >
-                    <option>Homeowner</option>
-                    <option>RealEstate Investor</option>
-                  </select>
+                  />
 
                   <button
                     className="btn btn-block btn-primary"

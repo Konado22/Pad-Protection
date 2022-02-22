@@ -44,7 +44,6 @@ mutation addItem($itemName: String!, itemCategory: String, itemValue: Int, purch
   }
 }
 `;
-
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -62,23 +61,42 @@ export const ADD_ASSET = gql`
     $estimatedValue: Int
     $ppr: Int
     $purchasedDate: Date
-    $location: String) {
+    $location: String
+  ) {
     addAsset(
       name: $name
       estimatedValue: $estimatedValue
       ppr: $ppr
       purchasedDate: $purchasedDate
-      location: $location) {
+      location: $location
+    ) {
+      _id
+      name
+      estimatedValue
+      purchasedDate
+      policy {
+        name
+        provider
+        policyId
+        ppp
+      }
+      location
+      rooms {
         _id
         name
-        estimatedValue
-        ppr
-        purchasedDate
-        policy{
-          name
-          provider
+        items {
+          _id
+          itemName
         }
-        location
+        value
+      }
+      user {
+        _id
+        firstName
+        lastName
+        email
+        profile
+        age
       }
     }
   }

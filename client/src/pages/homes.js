@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import "../index.css";
 import { Link } from "react-router-dom";
 import App from "./stripe";
+import AddAsset from "../components/addAsset/addAsset";
 
 const Homes = () => {
   // configure query info
@@ -150,6 +151,7 @@ const Homes = () => {
           </Modal.Body>
         </Tab.Container>
       </Modal>
+      <AddAsset />
     </>
   );
 };
