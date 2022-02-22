@@ -85,6 +85,12 @@ const typeDefs = gql`
   }
 
   type Mutation {
+
+    #policy 
+    addPolicy(name: String!, provider: String, policyId: String, ppc: String ): Policy
+    removePolicy(_id: ID!): Policy
+    updatePolicy: Policy
+    
     # Asset CRU
     addAsset(name: String!, estimatedValue: Int, ppr: Int, purchasedDate: Int, location: String): Asset
     removeAsset(_id: ID!): Asset

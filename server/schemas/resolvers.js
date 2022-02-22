@@ -110,6 +110,27 @@ const resolvers = {
     // },
   },
   Mutation: {
+
+    addPolicy: async (parent, { name, provider, policyId, ppc}) => {
+      return await Policy.create({ name, provider, policyId, ppc});
+    },
+
+    removePolicy: async (parent, { id }) => {
+      return await Policy.findByIdAndDelete(
+        { _id: id }
+      );
+    },
+
+    updatePolicy: async (parent, { name, provider, policyId, ppc}) => {
+      return await Policy.findByIdAndUpdate(
+        { name },
+        { provider },
+        { policyId },
+        { ppc },
+        { new: true}
+        );
+    },
+
     addRoom: async (parent, { name, value }) => {
       return await Rooms.create({ name, value });
     },
@@ -161,6 +182,7 @@ const resolvers = {
     //     { new: true }
     //   );
     // },
+    
     addUser: async (parent, { email, password }) => {
       const user = await User.create({ email, password });
       const token = signToken(user);
