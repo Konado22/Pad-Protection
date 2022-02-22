@@ -59,7 +59,7 @@ const AddAsset = () => {
             <h4 className="title">Create Asset</h4>
             <div className="card-body">
               {data ? (
-                <p>Success! You may now head </p>
+                <p>Success!</p>
               ) : (
                 <form onSubmit={handleFormSubmit}>
                   <input
