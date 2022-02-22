@@ -77,7 +77,6 @@ const Homes = () => {
           </div>
         </Container>
       </div>
-      <AddAsset />
       {/* set modal data up */}
       <Modal
         size="sm"
@@ -152,6 +151,7 @@ const Homes = () => {
           </Modal.Body>
         </Tab.Container>
       </Modal>
+      <AddAsset />
     </>
   );
 };
