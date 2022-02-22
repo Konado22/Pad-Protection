@@ -65,49 +65,79 @@ const resolvers = {
     },
   },
   Mutation: {
-    addAsset: async (parent, { name, estimatedValue, ppr, purchasedDate, location }, context) => {
-      if (context.user) {     
+    addPolicy: async (parent, { name, provider, policyId, ppc }, context) => {
+      console.log(context);
+      if (context.user) {
+        const policyArrayUpdate = await Assets.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { policy: name, provider, policyId, ppc } }
+        );
+        return policyArrayUpdate;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    addAsset: async (
+      parent,
+      { name, estimatedValue, ppr, purchasedDate, location },
+      context
+    ) => {
+      if (context.user) {
         const assetArrayUpdate = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { assets: name, estimatedValue, ppr, purchasedDate, location }},
+          {
+            $push: {
+              assets: name,
+              estimatedValue,
+              ppr,
+              purchasedDate,
+              location,
+            },
+          },
           { new: true }
         );
 
         return assetArrayUpdate;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     addRoom: async (parent, { name }, context) => {
-      console.log(context)
+      console.log(context);
       if (context.user) {
         const roomArrayUpdate = await Assets.findByIdAndUpdate(
-            { _id: context.user._id },
-            { $push: { rooms: name }},
-            { new: true },
+          { _id: context.user._id },
+          { $push: { rooms: name } },
+          { new: true }
         );
         return roomArrayUpdate;
       }
-      throw new AuthenticationError('You need to be logged in!')
-
+      throw new AuthenticationError("You need to be logged in!");
     },
-    
 
-    addItem: async (parent, { itemName, itemCategory, itemValue, purchasedDate }) => {
-      console.log(context)
+    addItem: async (
+      parent,
+      { itemName, itemCategory, itemValue, purchasedDate }
+    ) => {
+      console.log(context);
       if (context.user) {
         const itemArrayUpdate = await Rooms.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { itemName, itemCategory, itemValue, purchasedDate }},
-          { new: true },
+          { $push: { itemName, itemCategory, itemValue, purchasedDate } },
+          { new: true }
         );
         return itemArrayUpdate;
       }
-      throw new AuthenticationError('You need to be logged in!')
+      throw new AuthenticationError("You need to be logged in!");
     },
 
-    updateItem: async (parent, { id, itemName, itemCatergory, itemValue }, context) => {
-      if (context.user) {}
+    updateItem: async (
+      parent,
+      { id, itemName, itemCatergory, itemValue },
+      context
+    ) => {
+      if (context.user) {
+      }
       return await Items.findOneAndUpdate(
         { _id: id },
         { itemName },

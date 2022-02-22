@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const ADD_ROOM = gql`
-mutation addRoom($name: String!,) {
+mutation addRoom($name: String!) {
   addRoom(name: $name)
   {
     room{
@@ -11,7 +11,25 @@ mutation addRoom($name: String!,) {
 }
 `;
 
+export const ADD_POLICY = gql`
+
+mutation addPolicy($name: String!, provider: String, policyId: String, ppc: String ) {
+  addPolicy (
+    name: $name,
+    provider: $provider,
+    policyId: $String,
+    ppc: $String
+  )
+  {
+    policy{
+      _id
+    }
+  }
+}
+`;
+
 export const ADD_ITEM = gql`
+
 mutation addItem($itemName: String!, itemCategory: String, itemValue: Int, purchasedDate: Date ) {
   addItem (
     itemName: $itemsName,
