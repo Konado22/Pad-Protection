@@ -15,6 +15,17 @@ export const GET_ME = gql`
         ppr
         purchasedDate
         location
+        rooms {
+          _id
+          name
+          value
+          items {
+            _id
+            itemName
+            itemCategory
+            itemValue
+          }
+        }
       }
     }
   }
