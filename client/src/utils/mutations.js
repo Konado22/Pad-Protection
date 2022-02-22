@@ -10,20 +10,30 @@ export const LOGIN_USER = gql`
     }
   }
 `;
-
-export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      products {
+//not in use
+export const ADD_ASSET = gql`
+  mutation addAsset(
+    $name: String!
+    $estimatedValue: Int
+    $ppr: Int
+    $purchasedDate: Date
+    $location: String) {
+    addAsset(
+      name: $name
+      estimatedValue: $estimatedValue
+      ppr: $ppr
+      purchasedDate: $purchasedDate
+      location: $location) {
         _id
         name
-        description
-        price
-        quantity
-        category {
+        estimatedValue
+        ppr
+        purchasedDate
+        policy{
           name
+          provider
         }
+        location
       }
     }
   }
