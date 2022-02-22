@@ -53,9 +53,9 @@ export const LOGIN_USER = gql`
         _id
       }
     }
-  }
+  } 
 `;
-//not in use
+
 export const ADD_ASSET = gql`
   mutation addAsset(
     $name: String!
