@@ -109,15 +109,15 @@ const typeDefs = gql`
     # Item CRU
     addItem(
       itemName: String!
-      itemCatergory: String
+      itemCategory: String
       itemValue: Int
-      purchaseDate: String
+      purchaseDate: Date
       room: Int
     ): Item
     removeItem(_id: ID!): Item
     updateItem(
       itemName: String!
-      itemCatergory: String
+      itemCategory: String
       itemValue: Int
       purchaseDate: String
       room: Int

@@ -14,6 +14,7 @@ import {
 } from "react-bootstrap";
 
 import { GET_ASSET } from "../utils/queries";
+import { ADD_ROOM } from "../utils/queries";
 
 const SingleThought = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`

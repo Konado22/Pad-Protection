@@ -1,5 +1,32 @@
 import { gql } from "@apollo/client";
 
+export const ADD_ROOM = gql`
+mutation addRoom($name: String!,) {
+  addRoom(name: $name)
+  {
+    room{
+      _id
+    }
+  }
+}
+`;
+
+export const ADD_ITEM = gql`
+mutation addItem($itemName: String!, itemCategory: String, itemValue: Int, purchasedDate: Date ) {
+  addItem (
+    itemName: $itemsName,
+    itemCategory: $itemCategory,
+    itemValue: $itemValue,
+    purchasedDate: $purchasedDate
+  )
+  {
+    item {
+      _id
+    }
+  }
+}
+`;
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
