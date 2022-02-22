@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import "../index.css";
 import { Link } from "react-router-dom";
 import App from "./stripe";
+import AddAsset from "../components/addAsset/addAsset";
 
 const Homes = () => {
   // configure query info
@@ -76,6 +77,7 @@ const Homes = () => {
           </div>
         </Container>
       </div>
+      <AddAsset />
       {/* set modal data up */}
       <Modal
         size="sm"

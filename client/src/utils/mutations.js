@@ -1,31 +1,31 @@
 import { gql } from "@apollo/client";
 
-export const ADD_ROOM = gql`
-mutation addRoom($name: String!,) {
-  addRoom(name: $name)
-  {
-    room{
-      _id
-    }
-  }
-}
-`;
+// export const ADD_ROOM = gql`
+// mutation addRoom($name: String!,) {
+//   addRoom(name: $name)
+//   {
+//     room{
+//       _id
+//     }
+//   }
+// }
+// `;
 
-export const ADD_ITEM = gql`
-mutation addItem($itemName: String!, itemCategory: String, itemValue: Int, purchasedDate: Date ) {
-  addItem (
-    itemName: $itemsName,
-    itemCategory: $itemCategory,
-    itemValue: $itemValue,
-    purchasedDate: $purchasedDate
-  )
-  {
-    item {
-      _id
-    }
-  }
-}
-`;
+// export const ADD_ITEM = gql`
+// mutation addItem($itemName: String!, itemCategory: String, itemValue: Int, purchasedDate: Date ) {
+//   addItem (
+//     itemName: $itemsName,
+//     itemCategory: $itemCategory,
+//     itemValue: $itemValue,
+//     purchasedDate: $purchasedDate
+//   )
+//   {
+//     item {
+//       _id
+//     }
+//   }
+// }
+// `;
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -44,23 +44,42 @@ export const ADD_ASSET = gql`
     $estimatedValue: Int
     $ppr: Int
     $purchasedDate: Date
-    $location: String) {
+    $location: String
+  ) {
     addAsset(
       name: $name
       estimatedValue: $estimatedValue
       ppr: $ppr
       purchasedDate: $purchasedDate
-      location: $location) {
+      location: $location
+    ) {
+      _id
+      name
+      estimatedValue
+      purchasedDate
+      policy {
+        name
+        provider
+        policyId
+        ppp
+      }
+      location
+      rooms {
         _id
         name
-        estimatedValue
-        ppr
-        purchasedDate
-        policy{
-          name
-          provider
+        items {
+          _id
+          itemName
         }
-        location
+        value
+      }
+      user {
+        _id
+        firstName
+        lastName
+        email
+        profile
+        age
       }
     }
   }
