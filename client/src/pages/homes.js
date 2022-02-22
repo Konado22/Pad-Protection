@@ -26,10 +26,6 @@ const Homes = () => {
     return <h2>LOADING...</h2>;
   }
 
-  if (!userData.assets.length) {
-    return <App />;
-  }
-
   return (
     <>
       <div className="container-fluid top-level">
