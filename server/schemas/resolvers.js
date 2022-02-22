@@ -64,6 +64,18 @@ const resolvers = {
     },
   },
   Mutation: {
+    addAsset: async (parent, { name, estimatedValue, ppr, purchasedDate, location }, context) => {
+      if (context.user) {     
+        const assetArrayUpdate = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { assets: name, estimatedValue, ppr, purchasedDate, location }},
+          { new: true }
+        );
+
+        return assetArrayUpdate;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
     addRoom: async (parent, { name }, context) => {
       console.log(context)
@@ -76,6 +88,7 @@ const resolvers = {
         return roomArrayUpdate;
       }
       throw new AuthenticationError('You need to be logged in!')
+
     },
     
 
@@ -92,7 +105,8 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!')
     },
 
-    updateItem: async (parent, { id, itemName, itemCatergory, itemValue }) => {
+    updateItem: async (parent, { id, itemName, itemCatergory, itemValue }, context) => {
+      if (context.user) {}
       return await Items.findOneAndUpdate(
         { _id: id },
         { itemName },
