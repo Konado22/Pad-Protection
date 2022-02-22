@@ -64,11 +64,32 @@ const resolvers = {
     },
   },
   Mutation: {
-    addRoom: async (parent, { name, value }) => {
-      return await Rooms.create({ name, value });
+
+    addRoom: async (parent, { name }, context) => {
+      console.log(context)
+      if (context.user) {
+        const roomArrayUpdate = await Assets.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $push: { rooms: name }},
+            { new: true },
+        );
+        return roomArrayUpdate;
+      }
+      throw new AuthenticationError('You need to be logged in!')
     },
-    addItem: async (parent, { itemName, itemCatergory, itemValue, room }) => {
-      return await Items.create({ itemName, itemCatergory, itemValue, room });
+    
+
+    addItem: async (parent, { itemName, itemCategory, itemValue, purchasedDate }) => {
+      console.log(context)
+      if (context.user) {
+        const itemArrayUpdate = await Rooms.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { itemName, itemCategory, itemValue, purchasedDate }},
+          { new: true },
+        );
+        return itemArrayUpdate;
+      }
+      throw new AuthenticationError('You need to be logged in!')
     },
 
     updateItem: async (parent, { id, itemName, itemCatergory, itemValue }) => {
