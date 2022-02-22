@@ -1,32 +1,49 @@
 import { gql } from "@apollo/client";
 
-// export const ADD_ROOM = gql`
-// mutation addRoom($name: String!,) {
-//   addRoom(name: $name)
-//   {
-//     room{
-//       _id
-//     }
-//   }
-// }
-// `;
+export const ADD_ROOM = gql`
+mutation addRoom($name: String!) {
+  addRoom(name: $name)
+  {
+    room{
+      _id
+    }
+  }
+}
+`;
 
-// export const ADD_ITEM = gql`
-// mutation addItem($itemName: String!, itemCategory: String, itemValue: Int, purchasedDate: Date ) {
-//   addItem (
-//     itemName: $itemsName,
-//     itemCategory: $itemCategory,
-//     itemValue: $itemValue,
-//     purchasedDate: $purchasedDate
-//   )
-//   {
-//     item {
-//       _id
-//     }
-//   }
-// }
-// `;
+export const ADD_POLICY = gql`
 
+mutation addPolicy($name: String!, provider: String, policyId: String, ppc: String ) {
+  addPolicy (
+    name: $name,
+    provider: $provider,
+    policyId: $String,
+    ppc: $String
+  )
+  {
+    policy{
+      _id
+    }
+  }
+}
+`;
+
+export const ADD_ITEM = gql`
+
+mutation addItem($itemName: String!, itemCategory: String, itemValue: Int, purchasedDate: Date ) {
+  addItem (
+    itemName: $itemsName,
+    itemCategory: $itemCategory,
+    itemValue: $itemValue,
+    purchasedDate: $purchasedDate
+  )
+  {
+    item {
+      _id
+    }
+  }
+}
+`;
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -35,9 +52,9 @@ export const LOGIN_USER = gql`
         _id
       }
     }
-  }
+  } 
 `;
-//not in use
+
 export const ADD_ASSET = gql`
   mutation addAsset(
     $name: String!
