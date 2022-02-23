@@ -31,7 +31,10 @@ function Providers(props) {
                   <td>AL</td>
                   <td class="text-center">
                     <button type="button" className="btn btn-primary">
-                      Get Quote
+                      <a href="https://www.statefarm.com/insurance/quotes">
+                        {" "}
+                        Get Quote
+                      </a>
                     </button>
                   </td>
                 </tr>
@@ -47,7 +50,10 @@ function Providers(props) {
                   <td>CO</td>
                   <td class="text-center">
                     <button type="button" className="btn btn-primary">
-                      Get Quote
+                      <a href="https://www.geico.com/homeowners-insurance/">
+                        {" "}
+                        Get Quote
+                      </a>
                     </button>
                   </td>
                 </tr>

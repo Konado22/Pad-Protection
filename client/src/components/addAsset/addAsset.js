@@ -53,9 +53,9 @@ const AddAsset = () => {
 
   return (
     <>
-      <main className="login">
+      <main className="login top-level4">
         <div className="">
-          <div className="signup">
+          <div className="signup ">
             <h4 className="title">Create Asset</h4>
             <div className="card-body">
               {data ? (
