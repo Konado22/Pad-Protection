@@ -21,7 +21,7 @@ server.applyMiddleware({ app });
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const YOUR_DOMAIN = "http://localhost:3000";
+const YOUR_DOMAIN = "https://padprotection.herokuapp.com/";
 
 app.post("/create-checkout-session", async (req, res) => {
   const prices = await stripe.prices.list({
