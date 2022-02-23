@@ -21,6 +21,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import SingleHome from "./pages/SingleHome";
 import ProductDisplay from "./pages/stripe";
+import Room from "./pages/Room";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -60,6 +61,9 @@ function App() {
             <Route exact path="/package" component={ProductDisplay} />
             <Route exact path="/home/:homeId">
               <SingleHome />
+            </Route>
+            <Route exact path="/room/:roomId">
+              <Room />
             </Route>
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>

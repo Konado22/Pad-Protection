@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-
 export const GET_ME = gql`
   {
     user {
@@ -49,6 +48,21 @@ export const GET_ASSET = gql`
           itemCategory
           itemValue
         }
+      }
+    }
+  }
+`;
+export const GET_ROOM = gql`
+  query room($_id: ID!) {
+    room(_id: $_id) {
+      _id
+      name
+      value
+      items {
+        itemName
+        itemCategory
+        itemValue
+        itemPurchaseDate
       }
     }
   }

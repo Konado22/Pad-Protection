@@ -121,7 +121,7 @@ const typeDefs = gql`
       itemName: String!
       itemCategory: String
       itemValue: Int
-      purchaseDate: Date
+      itemPurchaseDate: Date
       room: Int
     ): Item
     removeItem(_id: ID!): Item

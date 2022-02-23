@@ -32,13 +32,12 @@ const Homes = () => {
       <div className="container-fluid top-level">
         <div className="d-flex text-center">
           <h3 className="mt-3">Homes</h3>
-          <button
-            type="button"
-            className="btn btn-primary mt-2"
-            onClick={() => setShowModal(true)}
+          <Link
+            className="btn btn-primary btn-block btn-squared text-right"
+            to={`/dashboard`}
           >
-            Add Home
-          </button>
+            Back to Dashboard
+          </Link>
         </div>
         <Container className="row">
           <h4>
