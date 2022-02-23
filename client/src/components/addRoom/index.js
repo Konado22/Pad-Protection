@@ -3,30 +3,21 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 // import {add_asset, update_asset} from "?"
-import { ADD_ITEM } from "../../utils/mutations";
+import { ADD_ROOM } from "../../utils/mutations";
 
-const AddItem = () => {
+const AddRoom = () => {
   const [formState, setFormState] = useState({
-    itemName: "",
-    itemCategory: "",
-    itemValue: 0,
-    itemPurchaseDate: "",
+    name: "",
   });
-  const [addItem, { error, data }] = useMutation(ADD_ITEM);
+  const [addRoom, { error, data }] = useMutation(ADD_ROOM);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "itemValue") {
-      setFormState({
-        ...formState,
-        [name]: parseInt(value),
-      });
-    } else {
-      setFormState({
-        ...formState,
-        [name]: value,
-      });
-    }
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
   const handleFormSubmit = async (event) => {
@@ -34,7 +25,7 @@ const AddItem = () => {
     console.log(formState);
 
     try {
-      const { data } = await addItem({
+      const { data } = await addRoom({
         variables: { ...formState },
       });
       window.location.reload();
@@ -48,7 +39,7 @@ const AddItem = () => {
       <main className="login">
         <div className="">
           <div className="signup">
-            <h4 className="title">Create Item</h4>
+            <h4 className="title">Create Room</h4>
             <div className="card-body">
               {data ? (
                 <p>Success!</p>
@@ -56,34 +47,10 @@ const AddItem = () => {
                 <form onSubmit={handleFormSubmit}>
                   <input
                     className="form-input"
-                    placeholder="Item Name"
-                    name="itemName"
+                    placeholder="Room Name"
+                    name="name"
                     type="text"
-                    value={formState.itemName}
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-input"
-                    placeholder="Item Category"
-                    name="itemCategory"
-                    type="text"
-                    value={formState.itemCategory}
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-input"
-                    placeholder="Value"
-                    name="itemValue"
-                    type="number"
-                    value={formState.itemValue}
-                    onChange={handleChange}
-                  />
-                  <input
-                    className="form-input"
-                    placeholder="Purchased Date"
-                    name="itemPurchaseDate"
-                    type="text"
-                    value={formState.itemPurchaseDate}
+                    value={formState.name}
                     onChange={handleChange}
                   />
 
@@ -109,4 +76,4 @@ const AddItem = () => {
     </>
   );
 };
-export default AddItem;
+export default AddRoom;

@@ -13,7 +13,7 @@ const resolvers = {
     },
 
     room: async (parent, { _id }) => {
-      return await Rooms.findOne({ _id }).populate("room");
+      return await Rooms.findOne({ _id }).populate("items");
     },
 
     rooms: async (parent, args, context) => {
@@ -103,53 +103,67 @@ const resolvers = {
     },
 
     addRoom: async (parent, { name }, context) => {
-      console.log(context);
+      console.log(context.headers.referer.split("/")[4]);
+      const id = context.headers.referer.split("/")[4];
+
+      const room = await Rooms.create({ name });
+
       if (context.user) {
         const roomArrayUpdate = await Assets.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { rooms: name } },
+          { _id: id },
+          { $push: { rooms: room } },
           { new: true }
-         );
-        return roomArrayUpdate;
-       }
+        );
+        return room;
+      }
       throw new AuthenticationError("You need to be logged in!");
     },
 
     addItem: async (
       parent,
-      { itemName, itemCategory, itemValue, purchasedDate }
+      { itemName, itemCategory, itemValue, purchasedDate },
+      context
     ) => {
-      console.log(context);
+      console.log(context.headers.referer.split("/")[4]);
+
+      const id = context.headers.referer.split("/")[4];
+
+      const item = await Items.create({
+        itemName,
+        itemCategory,
+        itemValue,
+        purchasedDate,
+      });
+
       if (context.user) {
         const itemArrayUpdate = await Rooms.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { itemName, itemCategory, itemValue, purchasedDate } },
+          { _id: id },
+          { $push: { items: item } },
           { new: true }
         );
-        return itemArrayUpdate;
+        return item;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
 
-  // NEEDS REFACTORING
-  //  updateItem: async (parent, { id, itemName, itemCatergory, itemValue }, context) => {
-  //    if (context.user) {}
-  //   return await Items.findOneAndUpdate(
-  //      { _id: id },
-  //      { itemName },
-  //      { itemCatergory },
-  //      { itemValue },
-  //      // Return the newly updated object instead of the original
-  //      { new: true }
-  //    );
-  //  },
-  
+    // NEEDS REFACTORING
+    //  updateItem: async (parent, { id, itemName, itemCatergory, itemValue }, context) => {
+    //    if (context.user) {}
+    //   return await Items.findOneAndUpdate(
+    //      { _id: id },
+    //      { itemName },
+    //      { itemCatergory },
+    //      { itemValue },
+    //      // Return the newly updated object instead of the original
+    //      { new: true }
+    //    );
+    //  },
+
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
     },
-
 
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
