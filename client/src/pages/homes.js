@@ -30,127 +30,127 @@ const Homes = () => {
   return (
     <>
       <div className="container-fluid top-level">
-        <div className="d-flex text-center">
-          <h3 className="mt-3">Homes</h3>
-          <Link
-            className="btn btn-primary btn-block btn-squared text-right"
-            to={`/dashboard`}
-          >
-            Back to Dashboard
-          </Link>
-        </div>
-        <Container className="row">
-          <h4>
-            {userData.assets.length
-              ? `Viewing ${userData.assets.length} saved ${
-                  userData.assets.length === 1 ? "home" : "homes"
-                }:`
-              : "You have no homes!"}
-          </h4>
-          <div className="row">
-            {userData.assets.map((asset) => {
-              return (
-                <>
-                  <Card key={asset._id} border="dark" className="homeBody">
-                    <i class="fa-solid fa-house-chimney fa-4x mt-4"></i>
-                    <Card.Body>
-                      <Card.Title>{asset.name}</Card.Title>
-                      <p className="small">
-                        Estimated Value: {asset.estimatedValue}
-                      </p>
-                      <Card.Text>Location: {asset.location}</Card.Text>
-                      <Card.Text>
-                        Personal Property Recommendation: {asset.ppr}
-                      </Card.Text>
-                      <Link
-                        className="btn btn-primary btn-block btn-squared"
-                        to={`/home/${asset._id}`}
-                      >
-                        View Home
-                      </Link>
-                    </Card.Body>
-                  </Card>
-                </>
-              );
-            })}
+        <div className="row titlebutton">
+          <div className="d-flex ms-3">
+            <h3 className="mt-3 ms-5">Homes</h3>
+            <Link className="btn btn-primary alignment" to={`/dashboard`}>
+              Back to Dashboard
+            </Link>
           </div>
-        </Container>
-      </div>
-      {/* set modal data up */}
-      <Modal
-        size="sm"
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        aria-labelledby="signup-modal"
-      >
-        {/* tab container to do either signup or login component */}
-        <Tab.Container defaultActiveKey="login">
-          <Modal.Header closeButton></Modal.Header>
-          <Modal.Body className="formPolicy">
-            <Tab.Content>
-              <Tab.Pane eventKey="login">
-                <Form
-                  className="mb-3"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  {/* here adds a new property */}
-                  <Form.Label>
-                    {" "}
-                    Property Name:
-                    <Form.Control
-                      className="PropName"
-                      type="input"
-                    ></Form.Control>
-                  </Form.Label>
-                  <Form.Label>
-                    Estimated Value:
-                    <Form.Control
-                      className="EstimatedValue"
-                      type="input"
-                    ></Form.Control>
-                  </Form.Label>
-                  <Form.Label>
-                    Personal Property Recomendation:
-                    <Form.Control className="PPR" type="input"></Form.Control>
-                  </Form.Label>
-                  <Form.Label>
-                    Date Purchased:
-                    <Form.Control
-                      className="PurchasedDate"
-                      type="input"
-                    ></Form.Control>
-                  </Form.Label>
-                  <Form.Label>
-                    Location:
-                    <Form.Control
-                      className="Location"
-                      type="input"
-                    ></Form.Control>
-                  </Form.Label>
-                  <Form.Label>
-                    Policy:{" "}
-                    <Form.Control
-                      className="Policy"
-                      type="input"
-                    ></Form.Control>
-                  </Form.Label>
-                  <Form.Control
-                    type="submit"
-                    onClick={(e) => {
-                      e.preventDefault();
+
+          <Container className="row">
+            <h4>
+              {userData.assets.length
+                ? `Viewing ${userData.assets.length} saved ${
+                    userData.assets.length === 1 ? "home" : "homes"
+                  }:`
+                : "You have no homes!"}
+            </h4>
+            <div className="homeBody2">
+              {userData.assets.map((asset) => {
+                return (
+                  <>
+                    <Card key={asset._id} border="dark" className="homeBody">
+                      <i class="fa-solid fa-house-chimney fa-4x mt-4"></i>
+                      <Card.Body>
+                        <Card.Title>{asset.name}</Card.Title>
+                        <p className="small">
+                          Estimated Value: {asset.estimatedValue}
+                        </p>
+                        <Card.Text>Location: {asset.location}</Card.Text>
+                        <Card.Text>
+                          Personal Property Recommendation: {asset.ppr}
+                        </Card.Text>
+                        <Link
+                          className="btn btn-primary btn-block btn-squared"
+                          to={`/home/${asset._id}`}
+                        >
+                          View Home
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </>
+                );
+              })}
+            </div>
+          </Container>
+          <AddAsset />
+        </div>
+        {/* set modal data up */}
+        <Modal
+          size="sm"
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          aria-labelledby="signup-modal"
+        >
+          {/* tab container to do either signup or login component */}
+          <Tab.Container defaultActiveKey="login">
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body className="formPolicy">
+              <Tab.Content>
+                <Tab.Pane eventKey="login">
+                  <Form
+                    className="mb-3"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
                     }}
-                  ></Form.Control>
-                </Form>
-              </Tab.Pane>
-            </Tab.Content>
-          </Modal.Body>
-        </Tab.Container>
-      </Modal>
-      <AddAsset />
+                  >
+                    {/* here adds a new property */}
+                    <Form.Label>
+                      {" "}
+                      Property Name:
+                      <Form.Control
+                        className="PropName"
+                        type="input"
+                      ></Form.Control>
+                    </Form.Label>
+                    <Form.Label>
+                      Estimated Value:
+                      <Form.Control
+                        className="EstimatedValue"
+                        type="input"
+                      ></Form.Control>
+                    </Form.Label>
+                    <Form.Label>
+                      Personal Property Recomendation:
+                      <Form.Control className="PPR" type="input"></Form.Control>
+                    </Form.Label>
+                    <Form.Label>
+                      Date Purchased:
+                      <Form.Control
+                        className="PurchasedDate"
+                        type="input"
+                      ></Form.Control>
+                    </Form.Label>
+                    <Form.Label>
+                      Location:
+                      <Form.Control
+                        className="Location"
+                        type="input"
+                      ></Form.Control>
+                    </Form.Label>
+                    <Form.Label>
+                      Policy:{" "}
+                      <Form.Control
+                        className="Policy"
+                        type="input"
+                      ></Form.Control>
+                    </Form.Label>
+                    <Form.Control
+                      type="submit"
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    ></Form.Control>
+                  </Form>
+                </Tab.Pane>
+              </Tab.Content>
+            </Modal.Body>
+          </Tab.Container>
+        </Modal>
+      </div>
     </>
   );
 };

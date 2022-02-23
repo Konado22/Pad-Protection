@@ -12,8 +12,28 @@
 .top-level {
   background-color: rgb(22, 25, 48);
   position: relative;
-  height: 1000px;
+  height: 1400px;
+  width: 100%;
 }
-.top-level2 {
+.top-level3 {
   background-color: rgb(22, 25, 48);
+  width: 100%;
 }
+
+.top-level4 {
+  background-color: rgb(22, 25, 48);
+  margin-top: -20px;
+}
+
+/* @media (max-width: 500px) {
+  .titlebutton {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(22, 25, 48);
+    width: 420px;
+  }
+  .homeBody2 {
+    margin-right: px;
+    align-items: center;
+  }
+} */
