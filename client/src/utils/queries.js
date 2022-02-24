@@ -59,6 +59,7 @@ export const GET_ROOM = gql`
       name
       value
       items {
+        _id
         itemName
         itemCategory
         itemValue
@@ -67,6 +68,21 @@ export const GET_ROOM = gql`
     }
   }
 `;
+
+export const GET_ITEM = gql`
+  query item($_id: ID!) {
+    item(_id: $_id) {
+      items {
+        itemName
+        itemCategory
+        itemValue
+        itemPurchasedDate
+      }
+    }
+  }
+`;
+
+
 // export const QUERY_CHECKOUT = gql`
 //   {
 //     checkout {

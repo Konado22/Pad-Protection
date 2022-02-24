@@ -154,6 +154,30 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
+    updateItem: async (
+      parent,
+      { itemName, itemCategory, itemValue, purchasedDate },
+      context
+    ) => {
+      console.log(context.headers.referer.split("/")[4]);
+      console.log("here")
+      const id = context.headers.referer.split("/")[4];
+
+      const item = await Items.findByIdAndUpdate(
+        id,
+        {
+        itemName,
+        itemCategory,
+        itemValue,
+        purchasedDate,
+      })
+        return item;
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
+
+
+
     // NEEDS REFACTORING
     //  updateItem: async (parent, { id, itemName, itemCatergory, itemValue }, context) => {
     //    if (context.user) {}

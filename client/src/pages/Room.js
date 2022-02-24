@@ -15,6 +15,7 @@ import {
 import { Link } from "react-router-dom";
 
 import { GET_ROOM } from "../utils/queries";
+
 import AddItem from "../components/addItems/addItems";
 
 const Room = () => {
@@ -60,6 +61,18 @@ const Room = () => {
                       <Card.Title>{item.itemName}</Card.Title>
                       <Card.Text>Category: {item.itemCategory}</Card.Text>
                       <Card.Text>Value: {item.itemValue}</Card.Text>
+                      <Link
+                          className="btn btn-primary btn-block btn-squared"
+                          to={`/item/${item._id}`}
+                        >
+                          Update Item
+                        </Link>
+                        <Link
+                          className="btn btn-primary btn-block btn-squared"
+                          to={`/item/${item._id}`}
+                        >
+                          Delete Item
+                        </Link>
                     </Card.Body>
                   </Card>
                 </>

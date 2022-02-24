@@ -49,8 +49,8 @@ const typeDefs = gql`
     itemName: String
     itemCategory: String
     itemValue: Int
-    itemPurchaseDate: String
-    room: [Room]
+    itemPurchasedDate: String
+    room: ID
   }
   ## All assets for user
   type UserAssets {
@@ -121,16 +121,16 @@ const typeDefs = gql`
       itemName: String!
       itemCategory: String
       itemValue: Int
-      itemPurchaseDate: Date
-      room: Int
+      itemPurchasedDate: Date
+      room: ID
     ): Item
     removeItem(_id: ID!): Item
     updateItem(
       itemName: String!
       itemCategory: String
       itemValue: Int
-      purchaseDate: String
-      room: Int
+      itemPurchasedDate: Date
+      room: ID
     ): Item
 
     # User CREATE and LOGIN
