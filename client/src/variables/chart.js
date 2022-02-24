@@ -34,19 +34,25 @@ const App = () => {
   }
 
   let coverage = 0;
-  if (userData.assets.length) {
-    userData.assets.map((asset) => {
-      coverage = coverage + asset.ppr;
-      labels.push(asset.name);
-      dataSet.push(asset.ppr);
-    });
-    labels = [];
-    dataSet = [];
-  } else {
-    labels = [];
-    dataSet = [];
-  }
+  let addedPPr = 0;
+  console.log(userData);
 
+  if (userData.assets.length) {
+    if (userData.assets[0].rooms) {
+      console.log("hello");
+      userData.assets[0].rooms.map((room) => {
+        addedPPr = addedPPr + room.value;
+        console.log(addedPPr);
+      });
+      userData.assets.map((asset) => {
+        labels.push(asset.name);
+        dataSet.push(addedPPr);
+      });
+    }
+    labels = [];
+    dataSet = [];
+    console.log(dataSet);
+  }
   return (
     <div class="col-xl-4 col-md-5 mb-5 ">
       <div class="card border-left-primary shadow h-100 py-2">
@@ -59,7 +65,7 @@ const App = () => {
               <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
             </div>
             <div class="col-auto mt-5">
-              <h4>Coverage: {coverage}</h4>
+              <h4>Coverage: {addedPPr}</h4>
             </div>
           </div>
         </div>
