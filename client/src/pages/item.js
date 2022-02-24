@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
@@ -28,18 +28,17 @@ const Item = () => {
 
   const Item = data?.item || {};
   console.log(Item);
- 
+
   const [formState, setFormState] = useState({
     itemName: "",
     itemCategory: "",
     itemValue: 0,
     itemPurchasedDate: "",
   });
-  const [updateItem, { error }] = useMutation(UPDATE_ITEM);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(formState)
+    console.log(formState);
     if (name === "itemValue") {
       setFormState({
         ...formState,
@@ -53,15 +52,17 @@ const Item = () => {
     }
   };
 
+  const [updateItem, { error, data1 }] = useMutation(UPDATE_ITEM);
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
 
     try {
-      const { data } = await updateItem({
+      const { data1 } = await updateItem({
         variables: { ...formState },
       });
-      window.location.reload();
+      window.location.replace("/homes");
     } catch (e) {
       console.error(e);
     }
@@ -78,7 +79,7 @@ const Item = () => {
           <div className="signup">
             <h4 className="title">Update Item</h4>
             <div className="card-body">
-              {data ? (
+              {data1 ? (
                 <p>Success!</p>
               ) : (
                 <form onSubmit={handleFormSubmit}>
@@ -109,9 +110,9 @@ const Item = () => {
                   <input
                     className="form-input"
                     placeholder="Purchased Date"
-                    name="itemPurchasedDate"
+                    name="itemPurchaseDate"
                     type="text"
-                    value={formState.itemPurchasedDate}
+                    value={formState.itemPurchaseDate}
                     onChange={handleChange}
                   />
 

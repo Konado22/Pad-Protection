@@ -50,7 +50,6 @@ const typeDefs = gql`
     itemCategory: String
     itemValue: Int
     itemPurchasedDate: String
-    room: ID
   }
   ## All assets for user
   type UserAssets {

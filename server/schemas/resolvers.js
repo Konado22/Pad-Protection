@@ -9,7 +9,7 @@ const resolvers = {
     },
 
     item: async (parent, { _id }) => {
-      return await Items.findById(_id).populate("room");
+      return await Items.findOne({ _id });
     },
 
     room: async (parent, { _id }) => {
@@ -160,23 +160,19 @@ const resolvers = {
       context
     ) => {
       console.log(context.headers.referer.split("/")[4]);
-      console.log("here")
+      console.log("here");
       const id = context.headers.referer.split("/")[4];
 
-      const item = await Items.findByIdAndUpdate(
-        id,
-        {
+      const item = await Items.findByIdAndUpdate(id, {
         itemName,
         itemCategory,
         itemValue,
         purchasedDate,
-      })
-        return item;
+      });
+      return item;
       // }
       // throw new AuthenticationError("You need to be logged in!");
     },
-
-
 
     // NEEDS REFACTORING
     //  updateItem: async (parent, { id, itemName, itemCatergory, itemValue }, context) => {
