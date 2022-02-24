@@ -22,8 +22,7 @@ export const UPDATE_ITEM = gql`
       itemCategory: $itemCategory
       itemValue: $itemValue
       itemPurchasedDate: $itemPurchasedDate
-    )
-    {
+    ) {
       _id
       itemName
       itemCategory
@@ -68,6 +67,13 @@ export const ADD_ITEM = gql`
       itemCategory
       itemValue
       itemPurchaseDate
+    }
+  }
+`;
+export const REMOVE_ITEM = gql`
+  mutation removeItem($_id: ID!) {
+    removeItem(_id: $_id) {
+      _id
     }
   }
 `;

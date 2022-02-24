@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { UPDATE_ITEM, DEL_ITEM } from "../utils/mutations";
+import { UPDATE_ITEM } from "../utils/mutations";
 import { GET_ITEM } from "../utils/queries";
 
 const Item = () => {
