@@ -10,6 +10,29 @@ export const ADD_ROOM = gql`
   }
 `;
 
+export const UPDATE_ITEM = gql`
+  mutation updateItem(
+    $itemName: String!
+    $itemCategory: String
+    $itemValue: Int
+    $itemPurchasedDate: Date
+  ) {
+    updateItem(
+      itemName: $itemName
+      itemCategory: $itemCategory
+      itemValue: $itemValue
+      itemPurchasedDate: $itemPurchasedDate
+    )
+    {
+      _id
+      itemName
+      itemCategory
+      itemValue
+      itemPurchasedDate
+    }
+  }
+`;
+
 // export const ADD_POLICY = gql`
 
 // mutation addPolicy($name: String!, provider: String, policyId: String, ppc: String ) {
