@@ -1,7 +1,7 @@
 import React from "react";
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import {
   Card,
   Modal,
@@ -15,6 +15,7 @@ import {
 import { Link } from "react-router-dom";
 
 import { GET_ROOM } from "../utils/queries";
+import { DEL_ITEM } from "../utils/mutations";
 import AddItem from "../components/addItems/addItems";
 
 const Room = () => {
@@ -25,12 +26,28 @@ const Room = () => {
     // pass URL parameter
     variables: { _id: roomId },
   });
-
   const room = data?.room || {};
+
+  const [removeItem, {error}] = useMutation(DEL_ITEM);
   console.log(room);
   if (loading) {
     return <div>Loading...</div>;
   }
+   
+  const handleDeleteItem = async (_id) => {
+      
+      try {
+        const { data } = await removeItem({
+          variables: { _id },
+        });
+      } catch (err) {
+        console.error(err);
+      }
+  };
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  };
+
   return (
     <>
       <div className="top-level">
@@ -60,6 +77,9 @@ const Room = () => {
                       <Card.Title>{item.itemName}</Card.Title>
                       <Card.Text>Category: {item.itemCategory}</Card.Text>
                       <Card.Text>Value: {item.itemValue}</Card.Text>
+                      <Button className='btn-block btn-danger' onClick={() => handleDeleteItem(item._id)}>
+                      Delete
+                      </Button>
                     </Card.Body>
                   </Card>
                 </>

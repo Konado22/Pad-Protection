@@ -107,6 +107,12 @@ export const ADD_ASSET = gql`
   }
 `;
 
+export const DEL_ITEM = gql`
+  mutation removeItem($_id: ID!) {
+    removeItem(_id: $ID!)
+  }
+`
+
 export const ADD_USER = gql`
   mutation addUser(
     $firstName: String!

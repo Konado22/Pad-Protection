@@ -154,6 +154,20 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
+    removeItem: async (parent, { _id }, context) => {
+      if (context.user) {
+        const item = await Items.findOneAndDelete({ _id: ID });
+      
+        await Rooms.findOneAndUpdate(
+          { _id: context.room._id },
+          { $pull: { items: Items._id } }
+        );
+
+        return item;
+      };
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
     // NEEDS REFACTORING
     //  updateItem: async (parent, { id, itemName, itemCatergory, itemValue }, context) => {
     //    if (context.user) {}
