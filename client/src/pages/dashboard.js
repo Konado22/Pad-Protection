@@ -7,11 +7,16 @@ import AddCard from "../components/addHomeCard";
 import Policies from "../components/policies";
 import Providers from "../components/providers";
 import "../index.css";
+import { Card, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.user || {};
-  console.log(userData);
+
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
 
   return (
     <>

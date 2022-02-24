@@ -8,6 +8,7 @@ import { ADD_ROOM } from "../../utils/mutations";
 const AddRoom = () => {
   const [formState, setFormState] = useState({
     name: "",
+    value: 0,
   });
   const [addRoom, { error, data }] = useMutation(ADD_ROOM);
 
@@ -26,7 +27,7 @@ const AddRoom = () => {
 
     try {
       const { data } = await addRoom({
-        variables: { ...formState },
+        variables: { name: formState.name, value: formState.value },
       });
       window.location.reload();
     } catch (e) {
@@ -53,7 +54,6 @@ const AddRoom = () => {
                     value={formState.name}
                     onChange={handleChange}
                   />
-
                   <button
                     className="btn btn-block btn-primary"
                     style={{ cursor: "pointer" }}
