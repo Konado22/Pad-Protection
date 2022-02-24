@@ -5,6 +5,7 @@ export const ADD_ROOM = gql`
     addRoom(name: $name) {
       _id
       name
+      value
     }
   }
 `;

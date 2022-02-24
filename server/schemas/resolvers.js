@@ -76,14 +76,14 @@ const resolvers = {
     },
     addAsset: async (
       parent,
-      { name, estimatedValue, ppr, purchasedDate, location },
+      { name, estimatedValue, purchasedDate, location },
       context
     ) => {
       if (context.user) {
         const asset = await Assets.create({
           name,
           estimatedValue,
-          ppr,
+          ppr: 0,
           purchasedDate,
           location,
         });
@@ -106,7 +106,7 @@ const resolvers = {
       console.log(context.headers.referer.split("/")[4]);
       const id = context.headers.referer.split("/")[4];
 
-      const room = await Rooms.create({ name });
+      const room = await Rooms.create({ name, value: 0 });
 
       if (context.user) {
         const roomArrayUpdate = await Assets.findByIdAndUpdate(
@@ -135,10 +135,18 @@ const resolvers = {
         purchasedDate,
       });
 
+      const room = await Rooms.findOne({ _id: id });
+      const value = room.value + item.itemValue;
+      console.log(value);
       if (context.user) {
         const itemArrayUpdate = await Rooms.findByIdAndUpdate(
           { _id: id },
           { $push: { items: item } },
+          { new: true }
+        );
+        const updateValue = await Rooms.findByIdAndUpdate(
+          { _id: id },
+          { value: value },
           { new: true }
         );
         return item;
