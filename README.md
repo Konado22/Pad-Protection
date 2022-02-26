@@ -20,17 +20,18 @@
 
 ## Description
 ```
-🔍  Pad Protection is an application designed to help users calculate and track the value of the items in their
-home. Pad Protection will help users visualize the value of their assets by displaying their home divided into
-rooms containing items. 
+🔍  Pad Protection is an application designed to help users calculate and track the value of
+the items in their home. Pad Protection will help users visualize the value of their assets by
+displaying their home divided into rooms containing items. 
  
 ```
  
 ## User Story
   
 ```
-As a user, I want to track all of my home assets, so that I can get recommendations for personal property protection
-As a user, I want to track my home insurance policies, so that I have a single view to track all of my assets
+As a user, I want to track all of my home assets, so that I can get recommendations for personal
+property protection As a user, I want to track my home insurance policies, so that I have a single
+view to track all of my assets
 
 ```
 
