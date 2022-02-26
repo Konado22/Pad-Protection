@@ -54,19 +54,19 @@ export const ADD_ITEM = gql`
     $itemName: String!
     $itemCategory: String
     $itemValue: Int
-    $itemPurchaseDate: Date
+    $itemPurchasedDate: Date
   ) {
     addItem(
       itemName: $itemName
       itemCategory: $itemCategory
       itemValue: $itemValue
-      itemPurchaseDate: $itemPurchaseDate
+      itemPurchasedDate: $itemPurchasedDate
     ) {
       _id
       itemName
       itemCategory
       itemValue
-      itemPurchaseDate
+      itemPurchasedDate
     }
   }
 `;

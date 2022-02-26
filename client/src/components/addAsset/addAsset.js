@@ -11,7 +11,7 @@ const AddAsset = () => {
     name: "",
     estimatedValue: 0,
     ppr: 0,
-    purchasedDate: " ",
+    purchaseDate: "",
     location: "",
   });
   const [addAsset, { error, data }] = useMutation(ADD_ASSET);
@@ -62,6 +62,7 @@ const AddAsset = () => {
                 <p>Success!</p>
               ) : (
                 <form onSubmit={handleFormSubmit}>
+                  <p className="">Name: </p>
                   <input
                     className="form-input"
                     placeholder="Property Name"
@@ -70,6 +71,8 @@ const AddAsset = () => {
                     value={formState.name}
                     onChange={handleChange}
                   />
+
+                  <p className="">Estimated Value: </p>
                   <input
                     className="form-input"
                     placeholder="Estimated Value"
@@ -78,25 +81,27 @@ const AddAsset = () => {
                     value={formState.estimatedValue}
                     onChange={handleChange}
                   />
-                  <input
+                  {/* <input
                     className="form-input"
                     placeholder="recommended value"
                     name="ppr"
                     type="number"
                     value={formState.ppr}
                     onChange={handleChange}
-                  />
+                  /> */}
+                  <p className="">Purchased Date: </p>
                   <input
                     className="form-input"
-                    placeholder="purchasedDate"
-                    name="purchasedDate"
+                    placeholder="Purchased Date"
+                    name="purchaseDate"
                     type="text"
-                    value={formState.purchasedDate}
+                    value={formState.purchaseDate}
                     onChange={handleChange}
                   />
+                  <p className="">Location: </p>
                   <input
                     className="form-input"
-                    default="location"
+                    placeholder="Location"
                     name="location"
                     type="profile"
                     value={formState.location}
