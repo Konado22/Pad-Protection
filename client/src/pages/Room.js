@@ -1,7 +1,7 @@
 import React from "react";
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import {
   Card,
   Modal,
@@ -13,7 +13,7 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { REMOVE_ITEM } from "../utils/mutations";
 import { GET_ROOM } from "../utils/queries";
 
 import AddItem from "../components/addItems/addItems";
@@ -29,6 +29,22 @@ const Room = () => {
 
   const room = data?.room || {};
   console.log(room);
+  const [removeItem, { data2 }] = useMutation(REMOVE_ITEM);
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    console.log(value);
+    try {
+      const { data2 } = await removeItem({
+        variables: { _id: value },
+      });
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -62,17 +78,18 @@ const Room = () => {
                       <Card.Text>Category: {item.itemCategory}</Card.Text>
                       <Card.Text>Value: {item.itemValue}</Card.Text>
                       <Link
-                          className="btn btn-primary btn-block btn-squared"
-                          to={`/item/${item._id}`}
-                        >
-                          Update Item
-                        </Link>
-                        <Link
-                          className="btn btn-primary btn-block btn-squared"
-                          to={`/item/${item._id}`}
-                        >
-                          Delete Item
-                        </Link>
+                        className="btn btn-primary btn-block btn-squared"
+                        to={`/item/${item._id}`}
+                      >
+                        Update Item
+                      </Link>
+                      <button
+                        className="btn btn-primary btn-block btn-squared"
+                        value={`${item._id}`}
+                        onClick={handleDelete}
+                      >
+                        Delete Item
+                      </button>
                     </Card.Body>
                   </Card>
                 </>
