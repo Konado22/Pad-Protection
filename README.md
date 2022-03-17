@@ -73,7 +73,8 @@ Push your changes to the branch | git push yourname-branch
 Submit a pull request;
 Cooperate on the pull request form if any questions/issues added;
 ```
-
+## Installation
+ No installation needed to reproduce, users only need to access application
 ## Questions
 ✉️ Contact Project Team with any questions: [Email](mailto:barkerwjackson@gmail.com) ,   [GitHub](https://github.com/Jackson-Barker)<br />
 
