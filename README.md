@@ -18,6 +18,13 @@
 - [Questions](#questions)
 - [License](#license)
 
+## Features
+- Manage assets by property
+- easily add/remove items or areas
+- get insurance estimates based on tracker of total coverage
+- mobile friendly and responsive
+- stripe integration
+
 ## Description
 ```
 🔍  Pad Protection is an application designed to help users calculate and track the value of
